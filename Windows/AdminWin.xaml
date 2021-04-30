@@ -1,0 +1,51 @@
+﻿<Window x:Class="ELjournal.Windows.AdminWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ELjournal.Windows"
+        mc:Ignorable="d"
+        Title="AdminWin" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="129*"/>
+            <ColumnDefinition Width="550"/>
+            <ColumnDefinition Width="73*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="235"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="69*"/>
+        </Grid.RowDefinitions>
+        <ListBox
+            x:Name="lb_Users"
+            Grid.Row="1"
+            Grid.Column="2"
+            Background="AliceBlue"
+            Margin="5">
+        </ListBox>
+        <GroupBox 
+            Header="Отобразить"
+            Height="95"
+            VerticalAlignment="Top"
+            Margin="0 5"
+            Grid.Row="1"
+            Grid.Column="1">
+            <StackPanel>
+                <RadioButton
+                x:Name="rb_Stud"
+                Content="Студенты"
+                GroupName="visMode"
+                    Margin="4 10"/>
+                <RadioButton
+                 x:Name="rb_Prep"
+                Content="Преподаватели"
+                GroupName="visMode"
+                     Margin="4 0"/>
+            </StackPanel>
+        </GroupBox>
+
+    </Grid>
+</Window>
