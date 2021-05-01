@@ -28,7 +28,7 @@
         </ListBox>
         <GroupBox 
             Header="Отобразить"
-            Height="95"
+            Height="80"
             VerticalAlignment="Top"
             Margin="0 5"
             Grid.Row="1"
@@ -43,9 +43,65 @@
                  x:Name="rb_Prep"
                 Content="Преподаватели"
                 GroupName="visMode"
-                     Margin="4 0"/>
+                Margin="4 0"/>
             </StackPanel>
         </GroupBox>
+        <StackPanel
+            Margin="0 90 0 5"
+             Grid.Column="1"
+            Grid.Row="1">
+            <Button
+            x:Name="btn_Add"
+            Content="Добавить"
+            Click="btn_Add_Click"
+            Margin="10"/>
+            <Button
+                x:Name="btn_Del"
+                Content="Удалить"
+                Click="btn_Del_Click"
+                Margin="10"/>
+            <Button
+                x:Name="btn_Edit"
+                Content="Изменить"
+                Click="btn_Edit_Click"
+                Margin="10"/>
+        </StackPanel>
+        <WrapPanel
+            Grid.Row="2"
+            Grid.Column="2">
+            <Button
+                x:Name="btn_Back"
+                Content="Назад"
+                Click="btn_Back_Click"
+                Margin="10 8"/>
+            <TextBlock Margin="8">
+                <Run x:Name="numStr"
+                     Text="0"/>
+                <Run x:Name="numStr1"
+                     Text="1"
+                     Foreground="Red"/>
+                <Run x:Name="numStr2"
+                     Text="2"/>
+            </TextBlock>
+            <Button
+                x:Name="btn_Next"
+                Content="Далее"
+                Click="btn_Next_Click"
+                Margin="10 8"/>
+            <TextBlock                 
+                Margin="120 8 8 8"                
+                >
+                <Run Text="Количество записей на странице: "/>
+                
+            </TextBlock>
+            <ComboBox 
+                x:Name="cb_NumItems"
+                Grid.Column="1"
+                Grid.Row="2"
+                Width="50"
+                Margin="8"
+                />
+        </WrapPanel>
 
     </Grid>
 </Window>

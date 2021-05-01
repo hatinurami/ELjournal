@@ -23,5 +23,30 @@ namespace ELjournal.Windows
         {
             InitializeComponent();
         }
+
+        private void btn_Add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Del_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Edit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Next_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
