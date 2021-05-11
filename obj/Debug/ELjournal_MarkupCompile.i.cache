@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Света\source\repos\ELjournal\App.xaml
-4-17870027
+51507786066
 
 9-1113634620
 13-1505183044
-MainWindow.xaml;Windows\AdminWin.xaml;Windows\StudentWin.xaml;Windows\TeachWin.xaml;
+MainWindow.xaml;Style\AppStyle.xaml;Windows\AdminWin.xaml;Windows\StudentWin.xaml;Windows\TeachWin.xaml;
 
 True
 

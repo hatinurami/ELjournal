@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ELjournal"
         mc:Ignorable="d"
         Title="Авторизация" 
+        Style="{StaticResource winSt}"
         Height="420"
         Width="400">
     <Grid>

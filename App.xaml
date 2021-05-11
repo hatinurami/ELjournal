@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:ELjournal"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="c:\users\света\source\repos\eljournal\style\appstyle.xaml"/>
     </Application.Resources>
 </Application>
