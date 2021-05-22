@@ -1,7 +1,4 @@
-C:\Users\Света\source\repos\ELjournal\bin\Debug\ELjournal.exe.config
-C:\Users\Света\source\repos\ELjournal\bin\Debug\ELjournal.exe
-C:\Users\Света\source\repos\ELjournal\bin\Debug\ELjournal.pdb
-C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal.csprojAssemblyReference.cache
+C:\Users\Света\source\repos\ELjournal\obj\Debug\Style\AppStyle.baml
 C:\Users\Света\source\repos\ELjournal\obj\Debug\MainWindow.g.cs
 C:\Users\Света\source\repos\ELjournal\obj\Debug\Windows\AdminWin.g.cs
 C:\Users\Света\source\repos\ELjournal\obj\Debug\Windows\StudentWin.g.cs
@@ -9,6 +6,10 @@ C:\Users\Света\source\repos\ELjournal\obj\Debug\Windows\TeachWin.g.cs
 C:\Users\Света\source\repos\ELjournal\obj\Debug\App.g.cs
 C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal_MarkupCompile.cache
 C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal_MarkupCompile.lref
+C:\Users\Света\source\repos\ELjournal\bin\Debug\ELjournal.exe.config
+C:\Users\Света\source\repos\ELjournal\bin\Debug\ELjournal.exe
+C:\Users\Света\source\repos\ELjournal\bin\Debug\ELjournal.pdb
+C:\Users\Света\source\repos\ELjournal\obj\Debug\App.baml
 C:\Users\Света\source\repos\ELjournal\obj\Debug\MainWindow.baml
 C:\Users\Света\source\repos\ELjournal\obj\Debug\Windows\AdminWin.baml
 C:\Users\Света\source\repos\ELjournal\obj\Debug\Windows\StudentWin.baml
@@ -19,3 +20,11 @@ C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal.csproj.GenerateRe
 C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal.csproj.CoreCompileInputs.cache
 C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal.exe
 C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal.pdb
+C:\Users\Света\source\repos\ELjournal\bin\Debug\EntityFramework.dll
+C:\Users\Света\source\repos\ELjournal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Света\source\repos\ELjournal\bin\Debug\EntityFramework.xml
+C:\Users\Света\source\repos\ELjournal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Света\source\repos\ELjournal\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal.csprojAssemblyReference.cache
+C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal.csproj.CopyComplete
+C:\Users\Света\source\repos\ELjournal\obj\Debug\ELjournal_Content.g.cs

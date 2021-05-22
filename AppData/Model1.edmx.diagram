@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f0f2ea023067441cb8395572604d0351" Name="Diagram1">
+        <EntityTypeShape EntityType="ElJournalModel.Gender" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Group" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Journal" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Students" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Subjects" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Teachers" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="ElJournalModel.FK_Students_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Teachers_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Students_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Journal_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Journal_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Journal_Teachers" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Subjects_Teachers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

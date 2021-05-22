@@ -6,26 +6,75 @@
         xmlns:local="clr-namespace:ELjournal.Windows"
         mc:Ignorable="d"
         Style="{StaticResource winSt}"
-        Title="AdminWin" Height="450" Width="800">
+        Title="AdminWin" 
+        MinWidth="700"
+        Height="450"
+        Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
             <ColumnDefinition Width="129*"/>
-            <ColumnDefinition Width="550"/>
+            <ColumnDefinition Width="550*"/>
             <ColumnDefinition Width="73*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80*"/>
-            <RowDefinition Height="235"/>
+            <RowDefinition Height="235*"/>
             <RowDefinition Height="35*"/>
             <RowDefinition Height="69*"/>
         </Grid.RowDefinitions>
         <ListBox
-            x:Name="lb_Users"
+           
             Grid.Row="1"
             Grid.Column="2"
             Background="AliceBlue"
-            Margin="5">
+            Margin="5"
+            FontSize="14"
+            Loaded="ListBox_Loaded"
+            >
+            <ListView
+                x:Name="lb_Students"
+                Visibility="Collapsed">
+                
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Имя"
+                                            DisplayMemberBinding="{Binding fName}"
+                                            Width="auto"/>
+                            <GridViewColumn Header="Фамилия"
+                                            DisplayMemberBinding="{Binding lName}"
+                                            Width="auto"/>
+                            <GridViewColumn Header="Отчество"
+                                            DisplayMemberBinding="{Binding patronymic}"
+                                            Width="auto"/>
+                            <GridViewColumn Header="Группа"
+                                            DisplayMemberBinding="{Binding Group.nameGroup}"
+                                            Width="auto"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView
+                 x:Name="lb_Teachers"
+                Visibility="Visible">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Имя"
+                                            DisplayMemberBinding="{Binding lName}"
+                                            Width="auto"/>
+                            <GridViewColumn Header="Фамилия"
+                                            DisplayMemberBinding="{Binding fName}"
+                                            Width="auto"/>
+                            <GridViewColumn Header="Отчество"
+                                            DisplayMemberBinding="{Binding ptronymic}"
+                                            Width="auto"/>
+                           
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </ListBox>
         <GroupBox 
             Header="Отобразить"
@@ -36,15 +85,18 @@
             Grid.Column="1">
             <StackPanel>
                 <RadioButton
-                x:Name="rb_Stud"
-                Content="Студенты"
-                GroupName="visMode"
+                    x:Name="rb_Stud"
+                    Content="Студенты"
+                    GroupName="visMode"
+                    IsChecked="True"
+                    Click="rb_Stud_Click"
                     Margin="4 10"/>
                 <RadioButton
-                 x:Name="rb_Prep"
-                Content="Преподаватели"
-                GroupName="visMode"
-                Margin="4 0"/>
+                    x:Name="rb_Prep"
+                    Content="Преподаватели"
+                    GroupName="visMode"
+                    Click="rb_Prep_Click"
+                    Margin="4 0"/>
             </StackPanel>
         </GroupBox>
         <StackPanel

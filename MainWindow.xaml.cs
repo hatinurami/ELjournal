@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static ELjournal.AppData.DataClass;
 using ELjournal.Windows;
 
 namespace ELjournal
@@ -28,6 +29,7 @@ namespace ELjournal
 
         private void btn_Enter_Click(object sender, RoutedEventArgs e)
         {
+            //var user = context.
             AdminWin adminWin = new AdminWin();
             Close();
             adminWin.ShowDialog();

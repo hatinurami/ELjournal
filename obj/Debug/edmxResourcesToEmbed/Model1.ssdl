@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ElJournalModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="idGender" />
+    </Key>
+    <Property Name="idGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="genName" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="idGroup" />
+    </Key>
+    <Property Name="idGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameGroup" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Journal">
+    <Key>
+      <PropertyRef Name="idJournal" />
+    </Key>
+    <Property Name="idJournal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idStudent" Type="int" Nullable="false" />
+    <Property Name="mark" Type="int" Nullable="false" />
+    <Property Name="idSubj" Type="int" Nullable="false" />
+    <Property Name="dateM" Type="date" Nullable="false" />
+    <Property Name="idTeach" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="idStud" />
+    </Key>
+    <Property Name="idStud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="lName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="30" />
+    <Property Name="gender" Type="int" Nullable="false" />
+    <Property Name="eMail" Type="nvarchar" MaxLength="30" />
+    <Property Name="idGroup" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="idSubj" />
+    </Key>
+    <Property Name="idSubj" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subjName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="idTeach" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="idTeach" />
+    </Key>
+    <Property Name="idTeach" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="lName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ptronymic" Type="nvarchar" MaxLength="30" />
+    <Property Name="gender" Type="int" Nullable="false" />
+    <Property Name="eMail" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_Journal_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="idStud" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="idStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Subjects">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="idSubj" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="idSubj" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Teachers">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="idTeach" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="idTeach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="idGender" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="idGroup" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="idGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjects_Teachers">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="idTeach" />
+      </Principal>
+      <Dependent Role="Subjects">
+        <PropertyRef Name="idTeach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teachers_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="idGender" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ElJournalModelContainer">
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Journal" EntityType="Self.Journal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Journal_Students" Association="Self.FK_Journal_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Subjects" Association="Self.FK_Journal_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Teachers" Association="Self.FK_Journal_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Gender" Association="Self.FK_Students_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Group" Association="Self.FK_Students_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjects_Teachers" Association="Self.FK_Subjects_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teachers_Gender" Association="Self.FK_Teachers_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
