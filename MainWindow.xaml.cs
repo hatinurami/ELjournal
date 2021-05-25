@@ -29,7 +29,11 @@ namespace ELjournal
 
         private void btn_Enter_Click(object sender, RoutedEventArgs e)
         {
-            //var user = context.
+            var user = context.Autoriz.ToList().Where(i => i.login == txt_Login.Text && i.password == psb_Password.Password).FirstOrDefault();
+            if (user != null)
+            {
+               // userStud = context.Autoriz.Where(i => i.idAutoriz == (context.Students.Select(c => c.login)))
+            }
             AdminWin adminWin = new AdminWin();
             Close();
             adminWin.ShowDialog();

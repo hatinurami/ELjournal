@@ -12,28 +12,24 @@ namespace ELjournal.AppData
     using System;
     using System.Collections.Generic;
     
-    public partial class Teachers
+    public partial class Autoriz
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Teachers()
+        public Autoriz()
         {
-            this.Journal = new HashSet<Journal>();
-            this.Subjects = new HashSet<Subjects>();
+            this.Students = new HashSet<Students>();
+            this.Teachers = new HashSet<Teachers>();
         }
     
-        public int idTeach { get; set; }
-        public string fName { get; set; }
-        public string lName { get; set; }
-        public string ptronymic { get; set; }
-        public int gender { get; set; }
-        public string eMail { get; set; }
-        public Nullable<int> login { get; set; }
+        public int idAutoriz { get; set; }
+        public string login { get; set; }
+        public string password { get; set; }
+        public int uRole { get; set; }
     
-        public virtual Gender Gender1 { get; set; }
+        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Journal> Journal { get; set; }
+        public virtual ICollection<Students> Students { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subjects> Subjects { get; set; }
-        public virtual Autoriz Autoriz { get; set; }
+        public virtual ICollection<Teachers> Teachers { get; set; }
     }
 }

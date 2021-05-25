@@ -19,6 +19,11 @@
         <AssociationConnector Association="ElJournalModel.FK_Journal_Subjects" ManuallyRouted="false" />
         <AssociationConnector Association="ElJournalModel.FK_Journal_Teachers" ManuallyRouted="false" />
         <AssociationConnector Association="ElJournalModel.FK_Subjects_Teachers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ElJournalModel.Autoriz" Width="1.5" PointX="10.625" PointY="0.875" />
+        <EntityTypeShape EntityType="ElJournalModel.Role" Width="1.5" PointX="8.375" PointY="1.125" />
+        <AssociationConnector Association="ElJournalModel.FK_Autoriz_Role" />
+        <AssociationConnector Association="ElJournalModel.FK_Students_Autoriz" />
+        <AssociationConnector Association="ElJournalModel.FK_Teachers_Autoriz" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

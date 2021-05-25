@@ -32,5 +32,7 @@ namespace ELjournal.AppData
         public virtual DbSet<Subjects> Subjects { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Teachers> Teachers { get; set; }
+        public virtual DbSet<Autoriz> Autoriz { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
     }
 }
