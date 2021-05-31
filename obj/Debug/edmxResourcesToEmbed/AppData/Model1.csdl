@@ -45,6 +45,9 @@
     <NavigationProperty Name="Gender1" Relationship="Self.FK_Students_Gender" FromRole="Students" ToRole="Gender" />
     <NavigationProperty Name="Group" Relationship="Self.FK_Students_Group" FromRole="Students" ToRole="Group" />
     <NavigationProperty Name="Journal" Relationship="Self.FK_Journal_Students" FromRole="Students" ToRole="Journal" />
+    <Property Name="login" Type="Int32" />
+    <NavigationProperty Name="Autoriz" Relationship="ElJournalModel.FK_Students_Autoriz" FromRole="Students" ToRole="Autoriz" />
+    <Property Name="available" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
@@ -79,6 +82,9 @@
     <NavigationProperty Name="Gender1" Relationship="Self.FK_Teachers_Gender" FromRole="Teachers" ToRole="Gender" />
     <NavigationProperty Name="Journal" Relationship="Self.FK_Journal_Teachers" FromRole="Teachers" ToRole="Journal" />
     <NavigationProperty Name="Subjects" Relationship="Self.FK_Subjects_Teachers" FromRole="Teachers" ToRole="Subjects" />
+    <Property Name="login" Type="Int32" />
+    <NavigationProperty Name="Autoriz" Relationship="ElJournalModel.FK_Teachers_Autoriz" FromRole="Teachers" ToRole="Autoriz" />
+    <Property Name="available" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_Students_Gender">
     <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -200,5 +206,75 @@
       <End Role="Teachers" EntitySet="Teachers" />
       <End Role="Subjects" EntitySet="Subjects" />
     </AssociationSet>
+    <EntitySet Name="Autoriz" EntityType="ElJournalModel.Autoriz" />
+    <EntitySet Name="Role" EntityType="ElJournalModel.Role" />
+    <AssociationSet Name="FK_Autoriz_Role" Association="ElJournalModel.FK_Autoriz_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Autoriz" EntitySet="Autoriz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Autoriz" Association="ElJournalModel.FK_Students_Autoriz">
+      <End Role="Autoriz" EntitySet="Autoriz" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teachers_Autoriz" Association="ElJournalModel.FK_Teachers_Autoriz">
+      <End Role="Autoriz" EntitySet="Autoriz" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Autoriz">
+    <Key>
+      <PropertyRef Name="idAutoriz" />
+    </Key>
+    <Property Name="idAutoriz" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="ElJournalModel.FK_Autoriz_Role" FromRole="Autoriz" ToRole="Role" />
+    <NavigationProperty Name="Students" Relationship="ElJournalModel.FK_Students_Autoriz" FromRole="Autoriz" ToRole="Students" />
+    <NavigationProperty Name="Teachers" Relationship="ElJournalModel.FK_Teachers_Autoriz" FromRole="Autoriz" ToRole="Teachers" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="idRole" />
+    </Key>
+    <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameRole" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Autoriz" Relationship="ElJournalModel.FK_Autoriz_Role" FromRole="Role" ToRole="Autoriz" />
+  </EntityType>
+  <Association Name="FK_Autoriz_Role">
+    <End Type="ElJournalModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="ElJournalModel.Autoriz" Role="Autoriz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="idRole" />
+      </Principal>
+      <Dependent Role="Autoriz">
+        <PropertyRef Name="uRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Autoriz">
+    <End Type="ElJournalModel.Autoriz" Role="Autoriz" Multiplicity="0..1" />
+    <End Type="ElJournalModel.Students" Role="Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autoriz">
+        <PropertyRef Name="idAutoriz" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teachers_Autoriz">
+    <End Type="ElJournalModel.Autoriz" Role="Autoriz" Multiplicity="0..1" />
+    <End Type="ElJournalModel.Teachers" Role="Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autoriz">
+        <PropertyRef Name="idAutoriz" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

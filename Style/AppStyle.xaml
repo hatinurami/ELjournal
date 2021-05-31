@@ -16,7 +16,8 @@
     </LinearGradientBrush>
     <Style TargetType="{x:Type Window}" x:Key="winSt">
         <Setter Property="Background" Value="{StaticResource winBrush}"/>
-        
+       
+
     </Style>
     <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground"

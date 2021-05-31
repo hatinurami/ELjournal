@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище ElJournalModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Autoriz">
+    <Key>
+      <PropertyRef Name="idAutoriz" />
+    </Key>
+    <Property Name="idAutoriz" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="uRole" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Gender">
     <Key>
       <PropertyRef Name="idGender" />
@@ -25,6 +34,13 @@
     <Property Name="dateM" Type="date" Nullable="false" />
     <Property Name="idTeach" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="idRole" />
+    </Key>
+    <Property Name="idRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameRole" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Students">
     <Key>
       <PropertyRef Name="idStud" />
@@ -36,6 +52,8 @@
     <Property Name="gender" Type="int" Nullable="false" />
     <Property Name="eMail" Type="nvarchar" MaxLength="30" />
     <Property Name="idGroup" Type="int" Nullable="false" />
+    <Property Name="login" Type="int" />
+    <Property Name="available" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
@@ -65,7 +83,21 @@
     <Property Name="ptronymic" Type="nvarchar" MaxLength="30" />
     <Property Name="gender" Type="int" Nullable="false" />
     <Property Name="eMail" Type="nchar" MaxLength="10" />
+    <Property Name="login" Type="int" />
+    <Property Name="available" Type="int" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Autoriz_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Autoriz" Type="Self.Autoriz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="idRole" />
+      </Principal>
+      <Dependent Role="Autoriz">
+        <PropertyRef Name="uRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Journal_Students">
     <End Role="Students" Type="Self.Students" Multiplicity="1" />
     <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
@@ -99,6 +131,18 @@
       </Principal>
       <Dependent Role="Journal">
         <PropertyRef Name="idTeach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Autoriz">
+    <End Role="Autoriz" Type="Self.Autoriz" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autoriz">
+        <PropertyRef Name="idAutoriz" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="login" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -138,6 +182,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Teachers_Autoriz">
+    <End Role="Autoriz" Type="Self.Autoriz" Multiplicity="0..1" />
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autoriz">
+        <PropertyRef Name="idAutoriz" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Teachers_Gender">
     <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
     <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
@@ -151,13 +207,19 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Хранилище ElJournalModelContainer">
+    <EntitySet Name="Autoriz" EntityType="Self.Autoriz" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Journal" EntityType="Self.Journal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Autoriz_Role" Association="Self.FK_Autoriz_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Autoriz" EntitySet="Autoriz" />
+    </AssociationSet>
     <AssociationSet Name="FK_Journal_Students" Association="Self.FK_Journal_Students">
       <End Role="Students" EntitySet="Students" />
       <End Role="Journal" EntitySet="Journal" />
@@ -170,6 +232,10 @@
       <End Role="Teachers" EntitySet="Teachers" />
       <End Role="Journal" EntitySet="Journal" />
     </AssociationSet>
+    <AssociationSet Name="FK_Students_Autoriz" Association="Self.FK_Students_Autoriz">
+      <End Role="Autoriz" EntitySet="Autoriz" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
     <AssociationSet Name="FK_Students_Gender" Association="Self.FK_Students_Gender">
       <End Role="Gender" EntitySet="Gender" />
       <End Role="Students" EntitySet="Students" />
@@ -181,6 +247,10 @@
     <AssociationSet Name="FK_Subjects_Teachers" Association="Self.FK_Subjects_Teachers">
       <End Role="Teachers" EntitySet="Teachers" />
       <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teachers_Autoriz" Association="Self.FK_Teachers_Autoriz">
+      <End Role="Autoriz" EntitySet="Autoriz" />
+      <End Role="Teachers" EntitySet="Teachers" />
     </AssociationSet>
     <AssociationSet Name="FK_Teachers_Gender" Association="Self.FK_Teachers_Gender">
       <End Role="Gender" EntitySet="Gender" />

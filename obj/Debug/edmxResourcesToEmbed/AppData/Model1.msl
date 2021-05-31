@@ -32,6 +32,8 @@
     <EntitySetMapping Name="Students">
       <EntityTypeMapping TypeName="ElJournalModel.Students">
         <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="available" ColumnName="available" />
+          <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="idStud" ColumnName="idStud" />
           <ScalarProperty Name="fName" ColumnName="fName" />
           <ScalarProperty Name="lName" ColumnName="lName" />
@@ -65,12 +67,32 @@
     <EntitySetMapping Name="Teachers">
       <EntityTypeMapping TypeName="ElJournalModel.Teachers">
         <MappingFragment StoreEntitySet="Teachers">
+          <ScalarProperty Name="available" ColumnName="available" />
+          <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="idTeach" ColumnName="idTeach" />
           <ScalarProperty Name="fName" ColumnName="fName" />
           <ScalarProperty Name="lName" ColumnName="lName" />
           <ScalarProperty Name="ptronymic" ColumnName="ptronymic" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="eMail" ColumnName="eMail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Autoriz">
+      <EntityTypeMapping TypeName="ElJournalModel.Autoriz">
+        <MappingFragment StoreEntitySet="Autoriz">
+          <ScalarProperty Name="uRole" ColumnName="uRole" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="idAutoriz" ColumnName="idAutoriz" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="ElJournalModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="nameRole" ColumnName="nameRole" />
+          <ScalarProperty Name="idRole" ColumnName="idRole" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

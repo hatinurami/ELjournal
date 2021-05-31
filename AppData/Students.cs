@@ -28,6 +28,7 @@ namespace ELjournal.AppData
         public string eMail { get; set; }
         public int idGroup { get; set; }
         public Nullable<int> login { get; set; }
+        public int available { get; set; }
     
         public virtual Gender Gender1 { get; set; }
         public virtual Group Group { get; set; }

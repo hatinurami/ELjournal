@@ -28,6 +28,7 @@ namespace ELjournal.AppData
         public int gender { get; set; }
         public string eMail { get; set; }
         public Nullable<int> login { get; set; }
+        public int available { get; set; }
     
         public virtual Gender Gender1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -8,8 +8,9 @@
         Style="{StaticResource winSt}"
         Title="AdminWin" 
         MinWidth="700"
-        Height="450"
-        Width="800">
+        Height="500"
+        Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
@@ -18,12 +19,12 @@
             <ColumnDefinition Width="73*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80*"/>
+            <RowDefinition Height="55*"/>
             <RowDefinition Height="235*"/>
             <RowDefinition Height="35*"/>
-            <RowDefinition Height="69*"/>
+            <RowDefinition Height="55*"/>
         </Grid.RowDefinitions>
-        <ListBox
+        <!--ListBox
            
             Grid.Row="1"
             Grid.Column="2"
@@ -31,51 +32,68 @@
             Margin="5"
             FontSize="14"
             Loaded="ListBox_Loaded"
-            >
-            <ListView
-                x:Name="lb_Students"
-                Visibility="Collapsed">
-                
-                <ListView.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Header="Имя"
+            -->
+        <ListView
+            x:Name="lb_Students"
+            Visibility="Collapsed"                
+            Grid.Row="1"
+            Grid.Column="2"
+            Background="AliceBlue"
+            Margin="5"                
+            FontSize="14"
+            MouseDoubleClick="lb_Students_MouseDoubleClick"
+            Loaded="ListBox_Loaded">
+
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Имя"
                                             DisplayMemberBinding="{Binding fName}"
                                             Width="auto"/>
-                            <GridViewColumn Header="Фамилия"
+                        <GridViewColumn Header="Фамилия"
                                             DisplayMemberBinding="{Binding lName}"
                                             Width="auto"/>
-                            <GridViewColumn Header="Отчество"
+                        <GridViewColumn Header="Отчество"
                                             DisplayMemberBinding="{Binding patronymic}"
                                             Width="auto"/>
-                            <GridViewColumn Header="Группа"
+                        <GridViewColumn Header="Группа"
                                             DisplayMemberBinding="{Binding Group.nameGroup}"
                                             Width="auto"/>
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView
-                 x:Name="lb_Teachers"
-                Visibility="Visible">
-                <ListView.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Header="Имя"
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView
+            x:Name="lb_Teachers"
+            Visibility="Visible"
+            Grid.Row="1"
+            Grid.Column="2"
+            Background="AliceBlue"
+            Margin="5"
+            FontSize="14"
+            MouseDoubleClick="lb_Teachers_MouseDoubleClick"
+            Loaded="ListBox_Loaded">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn     Header="Имя"
                                             DisplayMemberBinding="{Binding lName}"
-                                            Width="auto"/>
-                            <GridViewColumn Header="Фамилия"
+                                            Width="auto"
+                                            />
+
+
+                        <GridViewColumn Header="Фамилия"
                                             DisplayMemberBinding="{Binding fName}"
                                             Width="auto"/>
-                            <GridViewColumn Header="Отчество"
+                        <GridViewColumn Header="Отчество"
                                             DisplayMemberBinding="{Binding ptronymic}"
                                             Width="auto"/>
-                           
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ListBox>
+
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <!--/ListBox-->
         <GroupBox 
             Header="Отобразить"
             Height="80"
@@ -113,11 +131,6 @@
                 Content="Удалить"
                 Click="btn_Del_Click"
                 Margin="10"/>
-            <Button
-                x:Name="btn_Edit"
-                Content="Изменить"
-                Click="btn_Edit_Click"
-                Margin="10"/>
         </StackPanel>
         <WrapPanel
             Grid.Row="2"
@@ -125,27 +138,21 @@
             <Button
                 x:Name="btn_Back"
                 Content="Назад"
+                Width="50"
                 Click="btn_Back_Click"
                 Margin="10 8"/>
-            <TextBlock Margin="8">
-                <Run x:Name="numStr"
-                     Text="0"/>
-                <Run x:Name="numStr1"
-                     Text="1"
-                     Foreground="Red"/>
-                <Run x:Name="numStr2"
-                     Text="2"/>
-            </TextBlock>
+
             <Button
                 x:Name="btn_Next"
                 Content="Далее"
+                Width="50"
                 Click="btn_Next_Click"
-                Margin="10 8"/>
+                Margin="10 8 0 8"/>
             <TextBlock                 
-                Margin="120 8 8 8"                
+                Margin="100 8 8 8"                
                 >
                 <Run Text="Количество записей на странице: "/>
-                
+
             </TextBlock>
             <ComboBox 
                 x:Name="cb_NumItems"
@@ -153,8 +160,12 @@
                 Grid.Row="2"
                 Width="50"
                 Margin="8"
-                />
+                SelectionChanged="cb_NumItems_SelectionChanged"                
+                >
+            </ComboBox>
+
         </WrapPanel>
+
 
     </Grid>
 </Window>

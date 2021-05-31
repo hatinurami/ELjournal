@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ELjournal.Windows"
         mc:Ignorable="d"
-        Title="TeachWin" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource winSt}"
+        Title="TeachWin"
+        Height="450"
+        Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="163*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="84*"/>
+            <RowDefinition Height="335*"/>
+        </Grid.RowDefinitions>
+        <Label Content="ИО Препод, предмет"
+               FontSize="45"
+               Margin="10"
+               Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Row="1">
+            <Button Content="Группа"
+                    FontSize="18"
+                    Margin="15"/>
+            <Button Content="Группа"
+                    FontSize="18"
+                    Margin="15"/>
+        </StackPanel>
+        <ListView x:Name="lv_Teach"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="15">
+            
+        </ListView>
+
     </Grid>
 </Window>

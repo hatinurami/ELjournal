@@ -58,6 +58,7 @@
           <Property Name="eMail" Type="nvarchar" MaxLength="30" />
           <Property Name="idGroup" Type="int" Nullable="false" />
           <Property Name="login" Type="int" />
+          <Property Name="available" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -88,6 +89,7 @@
           <Property Name="gender" Type="int" Nullable="false" />
           <Property Name="eMail" Type="nchar" MaxLength="10" />
           <Property Name="login" Type="int" />
+          <Property Name="available" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Autoriz_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -311,6 +313,7 @@
           <NavigationProperty Name="Journal" Relationship="Self.FK_Journal_Students" FromRole="Students" ToRole="Journal" />
           <Property Name="login" Type="Int32" />
           <NavigationProperty Name="Autoriz" Relationship="ElJournalModel.FK_Students_Autoriz" FromRole="Students" ToRole="Autoriz" />
+          <Property Name="available" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -347,6 +350,7 @@
           <NavigationProperty Name="Subjects" Relationship="Self.FK_Subjects_Teachers" FromRole="Teachers" ToRole="Subjects" />
           <Property Name="login" Type="Int32" />
           <NavigationProperty Name="Autoriz" Relationship="ElJournalModel.FK_Teachers_Autoriz" FromRole="Teachers" ToRole="Autoriz" />
+          <Property Name="available" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Students_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -576,6 +580,7 @@
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="ElJournalModel.Students">
               <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="available" ColumnName="available" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="idStud" ColumnName="idStud" />
                 <ScalarProperty Name="fName" ColumnName="fName" />
@@ -610,6 +615,7 @@
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="ElJournalModel.Teachers">
               <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="available" ColumnName="available" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="idTeach" ColumnName="idTeach" />
                 <ScalarProperty Name="fName" ColumnName="fName" />

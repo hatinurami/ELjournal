@@ -1,7 +1,10 @@
 ﻿
-FD:\си\ELjournal\App.xaml;;
-FD:\си\ELjournal\MainWindow.xaml;;
-FD:\си\ELjournal\Windows\AdminWin.xaml;;
-FD:\си\ELjournal\Windows\StudentWin.xaml;;
-FD:\си\ELjournal\Windows\TeachWin.xaml;;
+FD:\ELjournal\App.xaml;;
+FD:\ELjournal\MainWindow.xaml;;
+FD:\ELjournal\Windows\AddUser.xaml;;
+FD:\ELjournal\Windows\AdminWin.xaml;;
+FD:\ELjournal\Windows\StudentWin.xaml;;
+FD:\ELjournal\Windows\TeachWin.xaml;;
+FD:\ELjournal\Windows\EditStudent.xaml;;
+FD:\ELjournal\Windows\EditTeacher.xaml;;
 

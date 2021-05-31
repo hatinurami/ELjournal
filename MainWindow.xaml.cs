@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ELjournal.AppData.DataClass;
+
 using ELjournal.Windows;
 
 namespace ELjournal
@@ -29,17 +30,54 @@ namespace ELjournal
 
         private void btn_Enter_Click(object sender, RoutedEventArgs e)
         {
-            var user = context.Autoriz.ToList().Where(i => i.login == txt_Login.Text && i.password == psb_Password.Password).FirstOrDefault();
-            if (user != null)
+            try
             {
-               // userStud = context.Autoriz.Where(i => i.idAutoriz == (context.Students.Select(c => c.login)))
+
+                var autoriz = context.Autoriz.ToList().Where(i => i.login == txt_Login.Text && i.password == psb_Password.Password).FirstOrDefault();
+                if (autoriz != null)
+                {
+                    var user = context.Teachers.Where(i => i.login == autoriz.idAutoriz ).FirstOrDefault();
+                    var user2 = context.Students.Where(i => i.login == autoriz.idAutoriz).FirstOrDefault();
+                    if (user != null && user2 == null && autoriz.uRole == 2 && user.available == 1)
+                    {
+                        userTeach = user;                       
+                        Hide();
+                        TeachWin teach = new TeachWin();
+                        teach.ShowDialog();
+                        Show();
+
+                    }
+                    else if (user == null && user2 != null && autoriz.uRole == 3 && user2.available == 1)
+                    {
+                        StudentWin student = new StudentWin();
+                        userStud = user2;          
+                        Hide();
+                        student.ShowDialog();
+                        Show();
+                    }
+                    else if (user != null && user2 == null && autoriz.uRole == 1)
+                    {
+                        AdminWin admin = new AdminWin();
+                        userTeach = user;
+                        Hide();
+                        admin.ShowDialog();
+                        Show();
+
+                    }
+                }
+                else MessageBox.Show("Пользователь не найден");
             }
-            AdminWin adminWin = new AdminWin();
-            Close();
-            adminWin.ShowDialog();
+            catch (Exception)
+            {
+                MessageBox.Show("Что-то пошло не так!");
+                
+            }
 
         }
 
-       
+
     }
+
+
 }
+

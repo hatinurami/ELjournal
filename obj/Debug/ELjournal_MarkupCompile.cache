@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\си\ELjournal\obj\Debug\
+D:\ELjournal\obj\Debug\
 ELjournal
 none
 false
 DEBUG;TRACE
-D:\си\ELjournal\App.xaml
-51507786066
+D:\ELjournal\App.xaml
+8-493933118
 2-1302128269
-191664301157
-18-1735377559
-MainWindow.xaml;Style\AppStyle.xaml;Windows\AdminWin.xaml;Windows\StudentWin.xaml;Windows\TeachWin.xaml;
+241802088551
+18-671589519
+MainWindow.xaml;Style\AppStyle.xaml;Windows\AddUser.xaml;Windows\AdminWin.xaml;Windows\EditStudent.xaml;Windows\EditTeacher.xaml;Windows\StudentWin.xaml;Windows\TeachWin.xaml;
 
 False
 
