@@ -40,9 +40,6 @@ namespace ELjournal.Windows
             };
             cb_NumItems.SelectedIndex = 0;
             Update();
-
-            //  DataContext = this;
-
         }
 
         public void Update()
@@ -56,26 +53,52 @@ namespace ELjournal.Windows
                 case 0:
                     datasourse = datasourse.Skip(Page * 10).Take(10).ToList();
                     datasourse2 = datasourse2.Skip(Page * 10).Take(10).ToList();
-                    btn_Next.IsEnabled = datasourse.Count() >= 10;
-                   
+                    if (rb_Prep.IsChecked == true)
+                    {
+                        btn_Next.IsEnabled = datasourse2.Count() >= 10;
+
+                    }
+                    else if (rb_Stud.IsChecked == true)
+                    {
+                        btn_Next.IsEnabled = datasourse.Count() >= 10;
+
+                    }
                     break;
                 case 1:
                     datasourse = datasourse.Skip(Page * 20).Take(20).ToList();
                     datasourse2 = datasourse2.Skip(Page * 20).Take(20).ToList();
-                    btn_Next.IsEnabled = datasourse.Count() >= 20;
-                    
+                    if (rb_Prep.IsChecked == true)
+                    {
+                        btn_Next.IsEnabled = datasourse2.Count() >= 20;
+
+                    }
+                    else if (rb_Stud.IsChecked == true)
+                    {
+                        btn_Next.IsEnabled = datasourse.Count() >= 20;
+
+                    }
+
                     break;
                 case 2:
                     datasourse = datasourse.Skip(Page * 30).Take(30).ToList();
                     datasourse2 = datasourse2.Skip(Page * 30).Take(30).ToList();
-                    btn_Next.IsEnabled = datasourse.Count() >= 30;
-                    
+                    if (rb_Prep.IsChecked == true)
+                    {
+                        btn_Next.IsEnabled = datasourse2.Count() >= 30;
+
+                    }
+                    else if (rb_Stud.IsChecked == true)
+                    {
+                        btn_Next.IsEnabled = datasourse.Count() >= 30;
+
+                    }
+
                     break;
                 case 3:
                     datasourse = datasourse.ToList();
                     datasourse2 = datasourse2.ToList();
                     btn_Next.IsEnabled = false;
-                   
+
                     break;
 
                 default:
@@ -83,11 +106,9 @@ namespace ELjournal.Windows
             }
             //ShowedRows = datasourse.Count();
             lb_Students.ItemsSource = datasourse;
-
-
-            //сокращение их до определённого количества
-            //datasourse2 = datasourse2.Skip(Page * 10).Take(10).ToList();
             lb_Teachers.ItemsSource = datasourse2;
+            btn_Back.IsEnabled = Page != 0;
+
         }
 
         private void btn_Add_Click(object sender, RoutedEventArgs e)
@@ -153,7 +174,7 @@ namespace ELjournal.Windows
 
 
 
-        }       
+        }
         private void btn_Next_Click(object sender, RoutedEventArgs e)
         {
             btn_Back.IsEnabled = true;
@@ -163,16 +184,8 @@ namespace ELjournal.Windows
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
-            if (Page > 0)
-            {
-                Page--;
-                Update();
-            }
-            else if(Page == 0)
-            {
-                btn_Back.IsEnabled = false;
-            }
-                Update();
+            Page--;
+            Update();
         }
 
         private void ListBox_Loaded(object sender, RoutedEventArgs e)
@@ -196,12 +209,16 @@ namespace ELjournal.Windows
         {
             lb_Teachers.Visibility = Visibility.Collapsed;
             lb_Students.Visibility = Visibility.Visible;
+            Page = 0;
+            Update();
         }
 
         private void rb_Prep_Click(object sender, RoutedEventArgs e)
         {
             lb_Teachers.Visibility = Visibility.Visible;
             lb_Students.Visibility = Visibility.Collapsed;
+            Page = 0;
+            Update();
         }
 
         private void cb_NumItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -216,6 +233,7 @@ namespace ELjournal.Windows
             {
                 EditStudent edit = new EditStudent(students);
                 edit.ShowDialog();
+                Update();
             }
 
         }
@@ -224,10 +242,9 @@ namespace ELjournal.Windows
         {
             if (lb_Teachers.SelectedItem is Teachers teachers)
             {
-              
-                    EditTeacher edit = new EditTeacher(teachers);
-                    edit.ShowDialog();
-                
+                EditTeacher edit = new EditTeacher(teachers);
+                edit.ShowDialog();
+                Update();
             }
         }
     }

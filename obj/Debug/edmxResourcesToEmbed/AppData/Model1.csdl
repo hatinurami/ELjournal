@@ -30,6 +30,7 @@
     <NavigationProperty Name="Students" Relationship="Self.FK_Journal_Students" FromRole="Journal" ToRole="Students" />
     <NavigationProperty Name="Subjects" Relationship="Self.FK_Journal_Subjects" FromRole="Journal" ToRole="Subjects" />
     <NavigationProperty Name="Teachers" Relationship="Self.FK_Journal_Teachers" FromRole="Journal" ToRole="Teachers" />
+    <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Students">
     <Key>

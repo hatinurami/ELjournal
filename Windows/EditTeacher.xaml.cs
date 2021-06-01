@@ -27,11 +27,11 @@ namespace ELjournal.Windows
             InitializeComponent();
 
             IEnumerable<string> log =
-              from Autoriz in DataClass.context.Autoriz
+              from Autoriz in context.Autoriz
               where Autoriz.idAutoriz == teachers.login
               select Autoriz.login;
             IEnumerable<string> pas =
-                from Autoriz in DataClass.context.Autoriz
+                from Autoriz in context.Autoriz
                 where Autoriz.idAutoriz == teachers.login
                 select Autoriz.password;
                    
@@ -51,22 +51,26 @@ namespace ELjournal.Windows
 
         private void saveCh_Click(object sender, RoutedEventArgs e)
         {
-           
-            editTeach.fName = edName.Text;
-            editTeach.lName = edLName.Text;
-            editTeach.ptronymic = edPatr.Text;
-            editTeach.eMail = edEmail.Text;
-            //editStud.login =
-
             try
             {
+                
+                var aut = context.Autoriz.Where(i => i.idAutoriz == editTeach.login).FirstOrDefault();
+                editTeach.fName = edName.Text;
+                editTeach.lName = edLName.Text;
+                editTeach.ptronymic = edPatr.Text;
+                editTeach.eMail = edEmail.Text;
+                aut.login = edLog.Text;
+                aut.password = edPass.Text;
                 context.SaveChanges();
-                MessageBox.Show("Данные обновлены");
+                var mes = MessageBox.Show("Данные обновлены", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (mes == MessageBoxResult.OK)
+                {
+                    Exit_Click(sender, e);
+                }
             }
             catch (Exception mes)
             {
                 MessageBox.Show(mes.Message);
-
             }
         }
     }

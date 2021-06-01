@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:ELjournal.Windows"
         mc:Ignorable="d"
         Style="{StaticResource winSt}"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         Title="EditTeacher" 
         SizeToContent="WidthAndHeight">
     <Grid>
@@ -42,8 +44,6 @@
                        FontSize="20"/>
             <TextBox x:Name="edEmail"/>
 
-           
-
             <TextBlock Text="Логин"
                        FontSize="20"/>
             <TextBox x:Name="edLog"/>
@@ -58,8 +58,6 @@
                     Width="150"
                     Margin="10"
                     Click="saveCh_Click"/>
-
-
 
         </StackPanel>
     </Grid>

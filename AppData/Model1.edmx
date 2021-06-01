@@ -38,6 +38,7 @@
           <Property Name="idSubj" Type="int" Nullable="false" />
           <Property Name="dateM" Type="date" Nullable="false" />
           <Property Name="idTeach" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -296,6 +297,7 @@
           <NavigationProperty Name="Students" Relationship="Self.FK_Journal_Students" FromRole="Journal" ToRole="Students" />
           <NavigationProperty Name="Subjects" Relationship="Self.FK_Journal_Subjects" FromRole="Journal" ToRole="Subjects" />
           <NavigationProperty Name="Teachers" Relationship="Self.FK_Journal_Teachers" FromRole="Journal" ToRole="Teachers" />
+          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
@@ -568,6 +570,7 @@
           <EntitySetMapping Name="Journal">
             <EntityTypeMapping TypeName="ElJournalModel.Journal">
               <MappingFragment StoreEntitySet="Journal">
+                <ScalarProperty Name="comment" ColumnName="comment" />
                 <ScalarProperty Name="idJournal" ColumnName="idJournal" />
                 <ScalarProperty Name="idStudent" ColumnName="idStudent" />
                 <ScalarProperty Name="mark" ColumnName="mark" />

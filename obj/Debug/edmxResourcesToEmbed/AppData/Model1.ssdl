@@ -33,6 +33,7 @@
     <Property Name="idSubj" Type="int" Nullable="false" />
     <Property Name="dateM" Type="date" Nullable="false" />
     <Property Name="idTeach" Type="int" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Role">
     <Key>

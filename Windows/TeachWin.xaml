@@ -9,7 +9,8 @@
         Style="{StaticResource winSt}"
         Title="TeachWin"
         Height="450"
-        Width="800">
+        Loaded="Window_Loaded"
+        Width="700">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35*"/>
@@ -17,26 +18,93 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="84*"/>
-            <RowDefinition Height="335*"/>
+            <RowDefinition Height="275*"/>
+            <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <Label Content="ИО Препод, предмет"
+               x:Name="TeachNameLab"
                FontSize="45"
                Margin="10"
                Grid.ColumnSpan="2"/>
-        <StackPanel Grid.Row="1">
-            <Button Content="Группа"
-                    FontSize="18"
-                    Margin="15"/>
-            <Button Content="Группа"
-                    FontSize="18"
-                    Margin="15"/>
-        </StackPanel>
-        <ListView x:Name="lv_Teach"
-                  Grid.Row="1"
-                  Grid.Column="1"
-                  Margin="15">
-            
+        <StackPanel Grid.Row="1" Grid.RowSpan="2"/>
+        <ListView
+            x:Name="lbJournal"
+            Visibility="Visible"
+            Grid.Row="1"
+            Grid.Column="1"
+            Background="AliceBlue"
+            Margin="15"
+            FontSize="14"
+            MouseDoubleClick="lbJournal_MouseDoubleClick"
+            Loaded="lbJournal_Loaded">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn     Header="Имя"                                            
+                                            DisplayMemberBinding="{Binding Students.fName}"
+                                            Width="auto"
+                                            />
+                        <GridViewColumn     Header="Фамилия"                                            
+                                            DisplayMemberBinding="{Binding Students.lName}"
+                                            Width="auto"
+                                            />
+                        <GridViewColumn Header="Оценка"
+                                            DisplayMemberBinding="{Binding mark}"
+                                            Width="auto"/>
+                        <GridViewColumn Header="Дата"
+                                            DisplayMemberBinding="{Binding dateM}"
+                                            Width="auto"/>
+                        <GridViewColumn Header="Комментарий"
+                                            DisplayMemberBinding="{Binding comment}"
+                                            Width="auto"/>
+
+
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2">
+            <TextBlock Text="Группа: "
+                       FontSize="25"/>
+            <ComboBox x:Name="cbGroup"
+                      Margin="5"
+                      SelectionChanged ="cbGroup_SelectionChanged"
+                      />
+        </StackPanel>
+
+        <WrapPanel
+            Grid.Row="2"
+            Grid.Column="1">
+            <Button
+                x:Name="btn_Back"
+                Content="Назад"
+                Width="50"
+                Click="btn_Back_Click"
+                Margin="10 8"/>
+
+            <Button
+                x:Name="btn_Next"
+                Content="Далее"
+                Width="50"
+                Click="btn_Next_Click"
+                Margin="10 8 0 8"/>
+            <TextBlock                 
+                Margin="100 8 8 8"                
+                >
+                <Run Text="Количество записей на странице: "/>
+
+            </TextBlock>
+            <ComboBox 
+                x:Name="cb_NumItems"
+                Grid.Column="1"
+                Grid.Row="2"
+                Width="50"
+                Margin="8"
+                SelectionChanged="cb_NumItems_SelectionChanged"                
+                >
+            </ComboBox>
+
+        </WrapPanel>
 
     </Grid>
 </Window>

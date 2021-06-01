@@ -25,18 +25,22 @@ namespace ELjournal.Windows
         public EditStudent(Students students)
         {
             InitializeComponent();
-            IEnumerable<string> log =
-                from Autoriz in DataClass.context.Autoriz
-                where Autoriz.idAutoriz == students.login
-                select Autoriz.login;
-            IEnumerable<string> pas =
-                from Autoriz in DataClass.context.Autoriz
-                where Autoriz.idAutoriz == students.login
-                select Autoriz.password;
+
             IEnumerable<string> gr =
-               from Group in DataClass.context.Group
+               from Group in context.Group
                where Group.idGroup == students.idGroup
                select Group.nameGroup;
+
+            IEnumerable<string> log =
+              from Autoriz in context.Autoriz
+              where Autoriz.idAutoriz == students.login
+              select Autoriz.login;
+
+            IEnumerable<string> pass =
+             from Autoriz in context.Autoriz
+             where Autoriz.idAutoriz == students.login
+             select Autoriz.password;
+
 
             var grquery = context.Group.Select(i => i.nameGroup).ToList();
             grquery.Insert(0, "Выберите группу");
@@ -48,7 +52,7 @@ namespace ELjournal.Windows
             edPatr.Text = students.patronymic;
             edEmail.Text = students.eMail;
             edLog.Text = log.First();
-            edPass.Text = pas.First();
+            edPass.Text = pass.First();
             edGroup.Text = gr.First();
 
         }
@@ -60,25 +64,32 @@ namespace ELjournal.Windows
 
         private void saveCh_Click(object sender, RoutedEventArgs e)
         {
-            if (edGroup.SelectedIndex != -1)
-            {
-                editStud.idGroup = edGroup.SelectedIndex;
-            }
-            editStud.fName = edName.Text;
-            editStud.lName = edLName.Text;
-            editStud.patronymic = edPatr.Text;
-            editStud.eMail = edEmail.Text;
-            //editStud.login =
-            
+
             try
             {
+                if (edGroup.SelectedIndex != -1)
+                {
+                    editStud.idGroup = edGroup.SelectedIndex;
+                }
+
+                var aut = context.Autoriz.Where(i => i.idAutoriz == editStud.login).FirstOrDefault();
+                editStud.fName = edName.Text;
+                editStud.lName = edLName.Text;
+                editStud.patronymic = edPatr.Text;
+                editStud.eMail = edEmail.Text;
+                aut.login = edLog.Text;
+                aut.password = edPass.Text;
                 context.SaveChanges();
-                MessageBox.Show("Данные обновлены");
+
+                var mes = MessageBox.Show("Данные обновлены", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (mes == MessageBoxResult.OK)
+                {
+                    Exit_Click(sender, e);
+                }
             }
             catch (Exception mes)
             {
                 MessageBox.Show(mes.Message);
-                
             }
         }
     }

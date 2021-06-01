@@ -126,3 +126,7 @@ D:\ELjournal\obj\Debug\Windows\EditStudent.g.cs
 D:\ELjournal\obj\Debug\Windows\EditStudent.baml
 D:\ELjournal\obj\Debug\Windows\EditTeacher.g.cs
 D:\ELjournal\obj\Debug\Windows\EditTeacher.baml
+F:\ELjournal\obj\Debug\Windows\EditStudent.g.cs
+F:\ELjournal\obj\Debug\Windows\EditTeacher.g.cs
+F:\ELjournal\obj\Debug\Windows\EditStudent.baml
+F:\ELjournal\obj\Debug\Windows\EditTeacher.baml

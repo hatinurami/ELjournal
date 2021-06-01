@@ -64,6 +64,8 @@ namespace ELjournal
                         Show();
 
                     }
+                    txt_Login.Text = string.Empty;
+                    psb_Password.Password = string.Empty;
                 }
                 else MessageBox.Show("Пользователь не найден");
             }

@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ELjournal.Windows"
         Style="{StaticResource winSt}"
+        WindowStyle="None"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="EditStudent"
         SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Button x:Name="Exit"
                 Click="Exit_Click"
@@ -60,6 +62,7 @@
                     Height="25"
                     Width="150"
                     Margin="10"
+                    IsDefault="True"                   
                     Click="saveCh_Click"/>
 
 

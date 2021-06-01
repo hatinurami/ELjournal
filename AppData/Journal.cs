@@ -20,6 +20,7 @@ namespace ELjournal.AppData
         public int idSubj { get; set; }
         public System.DateTime dateM { get; set; }
         public int idTeach { get; set; }
+        public string comment { get; set; }
     
         public virtual Students Students { get; set; }
         public virtual Subjects Subjects { get; set; }
