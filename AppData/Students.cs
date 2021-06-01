@@ -35,5 +35,6 @@ namespace ELjournal.AppData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Journal> Journal { get; set; }
         public virtual Autoriz Autoriz { get; set; }
+        public virtual Group Group1 { get; set; }
     }
 }

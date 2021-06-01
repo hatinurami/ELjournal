@@ -16,14 +16,16 @@ namespace ELjournal.AppData
     {
         public int idJournal { get; set; }
         public int idStudent { get; set; }
-        public int mark { get; set; }
+        public Nullable<int> mark { get; set; }
         public int idSubj { get; set; }
-        public System.DateTime dateM { get; set; }
+        public Nullable<System.DateTime> dateM { get; set; }
         public int idTeach { get; set; }
         public string comment { get; set; }
+        public int idGroup { get; set; }
     
         public virtual Students Students { get; set; }
         public virtual Subjects Subjects { get; set; }
         public virtual Teachers Teachers { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

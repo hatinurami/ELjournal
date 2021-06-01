@@ -29,11 +29,12 @@
     </Key>
     <Property Name="idJournal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idStudent" Type="int" Nullable="false" />
-    <Property Name="mark" Type="int" Nullable="false" />
+    <Property Name="mark" Type="int" />
     <Property Name="idSubj" Type="int" Nullable="false" />
-    <Property Name="dateM" Type="date" Nullable="false" />
+    <Property Name="dateM" Type="date" />
     <Property Name="idTeach" Type="int" Nullable="false" />
     <Property Name="comment" Type="nvarchar" MaxLength="255" />
+    <Property Name="idGroup" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -52,9 +53,9 @@
     <Property Name="patronymic" Type="nvarchar" MaxLength="30" />
     <Property Name="gender" Type="int" Nullable="false" />
     <Property Name="eMail" Type="nvarchar" MaxLength="30" />
-    <Property Name="idGroup" Type="int" Nullable="false" />
     <Property Name="login" Type="int" />
     <Property Name="available" Type="int" Nullable="false" />
+    <Property Name="idGroup" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
@@ -96,6 +97,18 @@
       </Principal>
       <Dependent Role="Autoriz">
         <PropertyRef Name="uRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="idGroup" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="idGroup" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -220,6 +233,10 @@
     <AssociationSet Name="FK_Autoriz_Role" Association="Self.FK_Autoriz_Role">
       <End Role="Role" EntitySet="Role" />
       <End Role="Autoriz" EntitySet="Autoriz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Group" Association="Self.FK_Journal_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Journal" EntitySet="Journal" />
     </AssociationSet>
     <AssociationSet Name="FK_Journal_Students" Association="Self.FK_Journal_Students">
       <End Role="Students" EntitySet="Students" />

@@ -21,12 +21,16 @@ namespace ELjournal.Windows
     /// </summary>
     public partial class TeachWin : Window
     {
+        Journal edJ;
         public int RowAll { get; set; }
         public int Page { get; set; }
 
         public TeachWin()
         {
             InitializeComponent();
+            var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).Select(c => c.subjName).First();
+            string prepN = $"{userTeach.lName} {userTeach.ptronymic}: {subN}";
+            TeachNameLab.Text = prepN;
             cb_NumItems.ItemsSource = new List<string>()
             {
                 "10",
@@ -35,21 +39,35 @@ namespace ELjournal.Windows
                 "All"
             };
             cb_NumItems.SelectedIndex = 0;
+
+            cbMark.ItemsSource = new List<string>()
+            {
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "Н"
+            };
             Update();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var grquery = context.Group.Select(i => i.nameGroup).ToList();
-            grquery.Insert(0, "Выберите группу");
-            cbGroup.ItemsSource = grquery;
-            cbGroup.SelectedIndex = 0;
 
         }
 
         public void Update()
         {
-            var datasourse = context.Journal.ToList();
+            var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).FirstOrDefault();
+            var datasourse = context.Journal.Where(i => i.idSubj == subN.idSubj ).ToList();
             RowAll = datasourse.Count();
+
+            var jrnl = context.Journal.Where(i => i.idSubj == subN.idSubj).FirstOrDefault();
+            var grquery = context.Group.Where(d => d.idGroup == jrnl.idGroup).Select(i => i.nameGroup).ToList();
+            grquery.Insert(0, "Выберите группу");
+            cbGroup.ItemsSource = grquery;
+            cbGroup.SelectedIndex = 0;
+
             switch (cb_NumItems.SelectedIndex)
             {
                 case 0:
@@ -90,7 +108,41 @@ namespace ELjournal.Windows
 
         private void lbJournal_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (lbJournal.SelectedItem is Journal journal)
+            {
+                edJ = journal;
+                var edit = context.Students.Where(i => i.idStud == journal.idStudent).FirstOrDefault();
+                tbName.Text = edit.fName;
+                tbLName.Text = edit.lName;
+                WPnl.Visibility = Visibility.Visible;
+                
+               
+            }
 
+        }
+        private void ok_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (cbMark.SelectedIndex != -1)
+                {
+                    edJ.mark = cbMark.SelectedIndex +1;
+                }
+                edJ.comment = txtComm.Text;
+                edJ.dateM = DateTime.Today;
+                context.SaveChanges();
+                var mes = MessageBox.Show("Данные обновлены", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (mes == MessageBoxResult.OK)
+                {
+                    WPnl.Visibility = Visibility.Hidden;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                
+            }
+            Update();
         }
 
         private void lbJournal_Loaded(object sender, RoutedEventArgs e)
@@ -106,10 +158,8 @@ namespace ELjournal.Windows
 
         private void cbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var gr = context.Group.Where(c => c.nameGroup == cbGroup.SelectedItem.ToString()).Select(i => i.idGroup).FirstOrDefault();
-            var stud = context.Students.Where(i => i.idGroup == gr).ToList();
-            Update();
-
+           // Update();
         }
+
     }
 }

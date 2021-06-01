@@ -22,7 +22,7 @@ namespace ELjournal.Windows
     public partial class AddUser : Window
     {
 
-       
+
         public AddUser()
         {
             InitializeComponent();
@@ -32,30 +32,28 @@ namespace ELjournal.Windows
             var gr = context.Group;
             cbx_group.ItemsSource = gr.ToList();
 
-          
-           
         }
 
         private void btn_addStud_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (
-                    txtName.Text == string.Empty ||
-                    txtlName.Text == string.Empty ||
-                    txtPatr.Text == string.Empty ||
-                    cbx_group.SelectedItem == null ||
-                    txt_eMail.Text == string.Empty ||
-                    txt_log.Text == string.Empty ||
-                    txt_pass.Text == string.Empty)
+                if (rbAddMode_Stud.IsChecked == true)
                 {
-                    MessageBox.Show("Заполните все поля!");
-                }
-                else
-                {
-                    if (rbAddMode_Stud.IsChecked == true)
-                    {
 
+                    if (
+                        txtName.Text == string.Empty ||
+                        txtlName.Text == string.Empty ||
+                        txtPatr.Text == string.Empty ||
+                        cbx_group.SelectedItem == null ||
+                        txt_eMail.Text == string.Empty ||
+                        txt_log.Text == string.Empty ||
+                        txt_pass.Text == string.Empty)
+                    {
+                        MessageBox.Show("Заполните все поля!");
+                    }
+                    else
+                    {
                         Autoriz autoriz = context.Autoriz.Add(new Autoriz
                         {
                             login = txt_log.Text,
@@ -73,15 +71,29 @@ namespace ELjournal.Windows
                             gender = rb_genM.IsChecked == true ? 1 : 2,
                             idGroup = cbx_group.SelectedIndex + 1,
                             eMail = txt_eMail.Text,
+                            available = 1,
                             login = autoriz.idAutoriz
 
                         }
                             ); ;
-                        
+
                         context.SaveChanges();
                         MessageBox.Show("Пользователь добавлен!");
                     }
-                    else if (rbAddMode_Prep.IsChecked == true)
+                }
+                else if (rbAddMode_Prep.IsChecked == true)
+                {
+                    if (
+                       txtName.Text == string.Empty ||
+                       txtlName.Text == string.Empty ||
+                       txtPatr.Text == string.Empty ||
+                       txt_eMail.Text == string.Empty ||
+                       txt_log.Text == string.Empty ||
+                       txt_pass.Text == string.Empty)
+                    {
+                        MessageBox.Show("Заполните все поля!");
+                    }
+                    else
                     {
                         Autoriz autoriz = context.Autoriz.Add(new Autoriz
                         {
@@ -89,7 +101,7 @@ namespace ELjournal.Windows
                             password = txt_pass.Text,
                             uRole = 2
                         }
-                            );
+                        );
 
                         Teachers teachers = context.Teachers.Add(new Teachers
                         {
@@ -98,17 +110,22 @@ namespace ELjournal.Windows
                             ptronymic = txtPatr.Text,
                             gender = rb_genM.IsChecked == true ? 1 : 2,
                             eMail = txt_eMail.Text,
-                            login = autoriz.idAutoriz
+                            login = autoriz.idAutoriz,
+                            available = 1
+
 
                         }
-                            );
+                            ) ;
+                        context.SaveChanges();                        
+                        MessageBox.Show("Пользователь добавлен!");
+
                     }
                 }
+
             }
             catch (Exception)
             {
-
-                throw;
+                MessageBox.Show("Произошла ошибка при сохранении.");               
             }
         }
 
@@ -123,10 +140,10 @@ namespace ELjournal.Windows
             {
                 cbx_group.Visibility = Visibility.Visible;
             }
-           
+
         }
 
-      
+
 
         private void rbAddMode_Prep_Click(object sender, RoutedEventArgs e)
         {

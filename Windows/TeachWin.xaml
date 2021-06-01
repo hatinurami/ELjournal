@@ -21,11 +21,12 @@
             <RowDefinition Height="275*"/>
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
-        <Label Content="ИО Препод, предмет"
+        <TextBlock Text="ИО Препод, предмет"
                x:Name="TeachNameLab"
-               FontSize="45"
+               FontSize="25"
                Margin="10"
-               Grid.ColumnSpan="2"/>
+               Grid.ColumnSpan="2"
+               TextWrapping="Wrap"/>
         <StackPanel Grid.Row="1" Grid.RowSpan="2"/>
         <ListView
             x:Name="lbJournal"
@@ -43,10 +44,12 @@
                         <GridViewColumn     Header="Имя"                                            
                                             DisplayMemberBinding="{Binding Students.fName}"
                                             Width="auto"
+                                            x:Name="cellName"
                                             />
                         <GridViewColumn     Header="Фамилия"                                            
                                             DisplayMemberBinding="{Binding Students.lName}"
                                             Width="auto"
+                                             x:Name="cellLName"
                                             />
                         <GridViewColumn Header="Оценка"
                                             DisplayMemberBinding="{Binding mark}"
@@ -104,6 +107,26 @@
                 >
             </ComboBox>
 
+        </WrapPanel>
+        <WrapPanel Grid.Row="1"
+                   Grid.Column="1"
+                   x:Name="WPnl"
+                   Visibility="Hidden">
+            <TextBlock x:Name="tbName"
+                       Width="auto"
+                       FontSize="13"
+                       Background="Snow"/>
+            <TextBlock x:Name="tbLName"
+                       Width="auto"
+                       FontSize="13"
+                       Background="Snow"/>
+            <ComboBox x:Name="cbMark"/>
+            <TextBox x:Name="txtComm"
+                     FontSize="13"
+                     Background="Snow"/>
+            <Button x:Name="ok"
+                    Content="ok"
+                    Click="ok_Click"/>
         </WrapPanel>
 
     </Grid>

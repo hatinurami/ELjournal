@@ -49,16 +49,16 @@ namespace ELjournal
                     }
                     else if (user == null && user2 != null && autoriz.uRole == 3 && user2.available == 1)
                     {
+                        userStud = user2;
                         StudentWin student = new StudentWin();
-                        userStud = user2;          
                         Hide();
                         student.ShowDialog();
                         Show();
                     }
                     else if (user != null && user2 == null && autoriz.uRole == 1)
                     {
-                        AdminWin admin = new AdminWin();
                         userTeach = user;
+                        AdminWin admin = new AdminWin();
                         Hide();
                         admin.ShowDialog();
                         Show();

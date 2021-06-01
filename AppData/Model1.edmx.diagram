@@ -24,6 +24,8 @@
         <AssociationConnector Association="ElJournalModel.FK_Autoriz_Role" />
         <AssociationConnector Association="ElJournalModel.FK_Students_Autoriz" />
         <AssociationConnector Association="ElJournalModel.FK_Teachers_Autoriz" />
+        <AssociationConnector Association="ElJournalModel.FK_Journal_Group" />
+        <AssociationConnector Association="ElJournalModel.FK_Students_Group1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

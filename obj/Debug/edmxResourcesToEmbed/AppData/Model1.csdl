@@ -16,6 +16,8 @@
     <Property Name="idGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nameGroup" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Students" Relationship="Self.FK_Students_Group" FromRole="Group" ToRole="Students" />
+    <NavigationProperty Name="Journal" Relationship="ElJournalModel.FK_Journal_Group" FromRole="Group" ToRole="Journal" />
+    <NavigationProperty Name="Students1" Relationship="ElJournalModel.FK_Students_Group1" FromRole="Group" ToRole="Students" />
   </EntityType>
   <EntityType Name="Journal">
     <Key>
@@ -23,14 +25,16 @@
     </Key>
     <Property Name="idJournal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="idStudent" Type="Int32" Nullable="false" />
-    <Property Name="mark" Type="Int32" Nullable="false" />
+    <Property Name="mark" Type="Int32" />
     <Property Name="idSubj" Type="Int32" Nullable="false" />
-    <Property Name="dateM" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateM" Type="DateTime" Precision="0" />
     <Property Name="idTeach" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Students" Relationship="Self.FK_Journal_Students" FromRole="Journal" ToRole="Students" />
     <NavigationProperty Name="Subjects" Relationship="Self.FK_Journal_Subjects" FromRole="Journal" ToRole="Subjects" />
     <NavigationProperty Name="Teachers" Relationship="Self.FK_Journal_Teachers" FromRole="Journal" ToRole="Teachers" />
     <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="idGroup" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Group" Relationship="ElJournalModel.FK_Journal_Group" FromRole="Journal" ToRole="Group" />
   </EntityType>
   <EntityType Name="Students">
     <Key>
@@ -49,6 +53,7 @@
     <Property Name="login" Type="Int32" />
     <NavigationProperty Name="Autoriz" Relationship="ElJournalModel.FK_Students_Autoriz" FromRole="Students" ToRole="Autoriz" />
     <Property Name="available" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Group1" Relationship="ElJournalModel.FK_Students_Group1" FromRole="Students" ToRole="Group" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
@@ -221,6 +226,14 @@
       <End Role="Autoriz" EntitySet="Autoriz" />
       <End Role="Teachers" EntitySet="Teachers" />
     </AssociationSet>
+    <AssociationSet Name="FK_Journal_Group" Association="ElJournalModel.FK_Journal_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Group1" Association="ElJournalModel.FK_Students_Group1">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Autoriz">
     <Key>
@@ -275,6 +288,30 @@
       </Principal>
       <Dependent Role="Teachers">
         <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Group">
+    <End Type="ElJournalModel.Group" Role="Group" Multiplicity="1" />
+    <End Type="ElJournalModel.Journal" Role="Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="idGroup" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="idGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Group1">
+    <End Type="ElJournalModel.Group" Role="Group" Multiplicity="1" />
+    <End Type="ElJournalModel.Students" Role="Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="idGroup" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="idGroup" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
