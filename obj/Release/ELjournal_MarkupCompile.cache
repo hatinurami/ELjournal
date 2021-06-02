@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\ELjournal\obj\Release\
+C:\Users\Hati nurami\Source\Repos\ELjournal\obj\Release\
 ELjournal
 none
 false
 TRACE
-D:\ELjournal\App.xaml
-6-1909352598
+C:\Users\Hati nurami\Source\Repos\ELjournal\App.xaml
+8-493933118
 2-1302128269
-22-899232831
-18-671589519
-MainWindow.xaml;Style\AppStyle.xaml;Windows\AddUser.xaml;Windows\AdminWin.xaml;Windows\StudentWin.xaml;Windows\TeachWin.xaml;
+241802088551
+18-745816444
+MainWindow.xaml;Style\AppStyle.xaml;Windows\AddUser.xaml;Windows\AdminWin.xaml;Windows\EditStudent.xaml;Windows\EditTeacher.xaml;Windows\StudentWin.xaml;Windows\TeachWin.xaml;
 
 True
 
