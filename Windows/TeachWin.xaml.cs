@@ -161,5 +161,35 @@ namespace ELjournal.Windows
            // Update();
         }
 
+        private void ResetSearch(object sende, RoutedEventArgs e)
+        {
+            FamSearch1.Text = "";
+            ImySearch1.Text = "";
+            PatrSearch1.Text = "";
+
+            lbJournal.ItemsSource = context.Journal.ToList();
+        }
+        private void Search(object sender, RoutedEventArgs e)
+        {
+            var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).FirstOrDefault();
+            var datasourse = context.Journal.Where(i => i.idSubj == subN.idSubj).ToList();
+            var edit = context.Students.Where(i => i.idStud == datasourse.Select(c => c.idStudent).First()).FirstOrDefault();
+            if (FamSearch1.Text.Length == 0 && ImySearch1.Text.Length == 0 &&
+                PatrSearch1.Text.Length == 0)
+            {
+                lbJournal.ItemsSource = datasourse.ToList();
+                return;
+            }
+
+            var res = datasourse.Where(i => i.idStudent == edit.idStud &&
+                                 edit.fName.Contains(ImySearch1.Text) 
+                                 ).ToList();
+            if (res.Count() != 0)
+                lbJournal.ItemsSource = res;
+            else
+                MessageBox.Show("Внимание!", " Не найдено!",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+
+        }
     }
 }
