@@ -10,11 +10,11 @@
         Title="TeachWin"
         Height="450"
         Loaded="Window_Loaded"
-        Width="700">
+        Width="790">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="35*"/>
-            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="197*"/>
+            <ColumnDefinition Width="585*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="84*"/>
@@ -73,6 +73,50 @@
                       Margin="5"
                       SelectionChanged ="cbGroup_SelectionChanged"
                       />
+
+            <StackPanel Orientation="Vertical" >
+                <GroupBox x:Name="GR_BOX" Margin="0,0,25,0" Height="120">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="Поиск" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel x:Name="FamSearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Label Content="Фамилия" />
+                                    <TextBox x:Name="FamSearch1" Width="100" />
+                                </StackPanel>
+                                <StackPanel x:Name="ImySearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Label Content="Имя" />
+                                    <TextBox x:Name="ImySearch1" Width="100"/>
+                                </StackPanel>
+                                <StackPanel x:Name="PatrSearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Label Content="Отчество" />
+                                    <TextBox x:Name="PatrSearch1" Width="100"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="30" Width="190">
+                    <Button Content="Поиск" Width="60" Margin="5" Click="Search"/>
+                    <Button Content="Сброс" Width="60" Margin="5" Click="ResetSearch"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
 
         <WrapPanel

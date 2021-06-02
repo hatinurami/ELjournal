@@ -13,16 +13,16 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="129*"/>
-            <ColumnDefinition Width="550*"/>
-            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="224*"/>
+            <ColumnDefinition Width="518*"/>
+            <ColumnDefinition Width="35*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55*"/>
-            <RowDefinition Height="235*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="55*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="335*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="47*"/>
         </Grid.RowDefinitions>
         <!--ListBox
            
@@ -35,7 +35,7 @@
             -->
         <ListView
             x:Name="lb_Students"
-            Visibility="Collapsed"                
+            Visibility="Visible"                
             Grid.Row="1"
             Grid.Column="2"
             Background="AliceBlue"
@@ -59,13 +59,14 @@
                         <GridViewColumn Header="Группа"
                                             DisplayMemberBinding="{Binding Group.nameGroup}"
                                             Width="auto"/>
+                       
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
         </ListView>
         <ListView
             x:Name="lb_Teachers"
-            Visibility="Visible"
+            Visibility="Collapsed"
             Grid.Row="1"
             Grid.Column="2"
             Background="AliceBlue"
@@ -76,18 +77,18 @@
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn     Header="Имя"
+                        <GridViewColumn Header="Имя"
                                             DisplayMemberBinding="{Binding lName}"
                                             Width="auto"
                                             />
-
-
                         <GridViewColumn Header="Фамилия"
                                             DisplayMemberBinding="{Binding fName}"
                                             Width="auto"/>
                         <GridViewColumn Header="Отчество"
                                             DisplayMemberBinding="{Binding ptronymic}"
                                             Width="auto"/>
+                        <GridViewColumn Header="Дисциплина"
+                                        DisplayMemberBinding="{Binding Subjects.subjName}"/>
 
                     </GridView.Columns>
                 </GridView>
@@ -98,8 +99,9 @@
             Header="Отобразить"
             Height="80"
             VerticalAlignment="Top"
-            Margin="0 5"
+            Margin="0,5,0,0"
             Grid.Row="1"
+            Style="{StaticResource gbStyle}"
             Grid.Column="1">
             <StackPanel>
                 <RadioButton
@@ -107,12 +109,14 @@
                     Content="Студенты"
                     GroupName="visMode"
                     IsChecked="True"
+                    Foreground="#51333E"
                     Click="rb_Stud_Click"
                     Margin="4 10"/>
                 <RadioButton
                     x:Name="rb_Prep"
                     Content="Преподаватели"
                     GroupName="visMode"
+                     Foreground="#51333E"
                     Click="rb_Prep_Click"
                     Margin="4 0"/>
             </StackPanel>
@@ -124,13 +128,60 @@
             <Button
             x:Name="btn_Add"
             Content="Добавить"
+            Height="25"
+                FontSize="18"
             Click="btn_Add_Click"
             Margin="10"/>
             <Button
                 x:Name="btn_Del"
                 Content="Удалить"
+                Height="25"
+                FontSize="18"
                 Click="btn_Del_Click"
                 Margin="10"/>
+            <StackPanel Orientation="Vertical" >
+                <GroupBox x:Name="GR_BOX" Margin="0,0,25,0" Height="120">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="Поиск" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel x:Name="FamSearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Label Content="Фамилия" />
+                                    <TextBox x:Name="FamSearch1" Width="100" />
+                                </StackPanel>
+                                <StackPanel x:Name="ImySearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Label Content="Имя" />
+                                    <TextBox x:Name="ImySearch1" Width="100"/>
+                                </StackPanel>
+                                <StackPanel x:Name="PatrSearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Label Content="Отчество" />
+                                    <TextBox x:Name="PatrSearch1" Width="100"/>
+                                </StackPanel>
+                               
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="30" Width="190">
+                    <Button Content="Поиск" Width="60" Margin="5" Click="Search"/>
+                    <Button Content="Сброс" Width="60" Margin="5" Click="ResetSearch"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
         <WrapPanel
             Grid.Row="2"
@@ -138,19 +189,22 @@
             <Button
                 x:Name="btn_Back"
                 Content="Назад"
-                Width="50"
+                Width="70"
+                Height="25"
+                FontSize="18"
                 Click="btn_Back_Click"
                 Margin="10 8"/>
 
             <Button
                 x:Name="btn_Next"
                 Content="Далее"
-                Width="50"
+                Width="70"
+                FontSize="18"
                 Click="btn_Next_Click"
                 Margin="10 8 0 8"/>
             <TextBlock                 
-                Margin="100 8 8 8"                
-                >
+                Margin="20 8 8 8"                
+                Style="{StaticResource tbStyle}">
                 <Run Text="Количество записей на странице: "/>
 
             </TextBlock>

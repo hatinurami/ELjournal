@@ -130,3 +130,5 @@ F:\ELjournal\obj\Debug\Windows\EditTeacher.g.cs
 F:\ELjournal\obj\Debug\Windows\EditStudent.baml
 F:\ELjournal\obj\Debug\Windows\EditTeacher.baml
 D:\ELjournal\obj\Debug\ELjournal.csproj.AssemblyReference.cache
+D:\ELjournal\obj\Debug\Windows\PageSearch.g.cs
+D:\ELjournal\obj\Debug\Windows\PageSearch.baml

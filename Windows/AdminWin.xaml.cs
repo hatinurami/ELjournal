@@ -39,6 +39,7 @@ namespace ELjournal.Windows
                 "All"
             };
             cb_NumItems.SelectedIndex = 0;
+           
             Update();
         }
 
@@ -46,6 +47,7 @@ namespace ELjournal.Windows
         {
             var datasourse = context.Students.ToList().Where(i => i.available == 1);
             var datasourse2 = context.Teachers.ToList().Where(i => i.available == 1);
+           
             RowAll = datasourse.Count();
             RowAll2 = datasourse2.Count();
             switch (cb_NumItems.SelectedIndex)
@@ -246,6 +248,36 @@ namespace ELjournal.Windows
                 edit.ShowDialog();
                 Update();
             }
+        }
+
+        private void ResetSearch(object sende, RoutedEventArgs e)
+        {
+            FamSearch1.Text = "";
+            ImySearch1.Text = "";
+            PatrSearch1.Text = "";
+           
+            lb_Students.ItemsSource = context.Students.ToList();
+        }
+        private void Search(object sender, RoutedEventArgs e)
+        {
+            var tabb = context.Students.ToList().Where(i => i.available == 1); 
+            if (FamSearch1.Text.Length == 0 && ImySearch1.Text.Length == 0 &&
+                PatrSearch1.Text.Length == 0 )
+            {
+                lb_Students.ItemsSource = tabb.ToList();
+                return;
+            }
+          
+            var res = tabb.Where(i => i.lName.Contains(FamSearch1.Text) &&
+                                 i.fName.Contains(ImySearch1.Text) &&
+                                 i.patronymic.Contains(PatrSearch1.Text) 
+                                 ).ToList();
+            if (res.Count() != 0)
+                lb_Students.ItemsSource = res;
+            else
+                MessageBox.Show("Внимание!", " Не найдено!",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+
         }
     }
 }
