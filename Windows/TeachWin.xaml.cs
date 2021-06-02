@@ -165,12 +165,14 @@ namespace ELjournal.Windows
         {
             FamSearch1.Text = "";
             ImySearch1.Text = "";
-            
 
-            lbJournal.ItemsSource = context.Journal.ToList();
+            var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).FirstOrDefault();
+            lbJournal.ItemsSource = context.Journal.Where(i => i.idSubj == subN.idSubj).ToList();
         }
         private void Search(object sender, RoutedEventArgs e)
         {
+            try
+            {
             var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).FirstOrDefault();
             var datasourse = context.Journal.Where(i => i.idSubj == subN.idSubj).ToList();
             var edit = context.Students.Where(i => i.idStud == datasourse.Select(c => c.idStudent).First()).FirstOrDefault();
@@ -189,6 +191,13 @@ namespace ELjournal.Windows
             else
                 MessageBox.Show("Внимание!", " Не найдено!",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+            catch 
+            {
+
+                MessageBox.Show("Извините, но оно пока что не работает", "УПС", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
     }

@@ -264,26 +264,26 @@ namespace ELjournal.Windows
         {
             FamSearch1.Text = "";
             ImySearch1.Text = "";
-            
             PatrSearch1.Text = "";
 
             lb_Students.ItemsSource = context.Students.ToList();
+            lb_Teachers.ItemsSource = context.Teachers.ToList();
         }
         private void Search(object sender, RoutedEventArgs e)
         {
             if (rb_Stud.IsChecked == true)
             {
                 var tabb = context.Students.ToList().Where(i => i.available == 1);
-                if (FamSearch10.Text.Length == 0 && ImySearch10.Text.Length == 0 &&
-                    PatrSearch10.Text.Length == 0)
+                if (FamSearch1.Text.Length == 0 && ImySearch1.Text.Length == 0 &&
+                    PatrSearch1.Text.Length == 0)
                 {
                     lb_Students.ItemsSource = tabb.ToList();
                     return;
                 }
 
-                var res = tabb.Where(i => i.lName.Contains(FamSearch10.Text) &&
-                                     i.fName.Contains(ImySearch10.Text) &&
-                                     i.patronymic.Contains(PatrSearch10.Text)
+                var res = tabb.Where(i => i.lName.Contains(FamSearch1.Text) &&
+                                     i.fName.Contains(ImySearch1.Text) &&
+                                     i.patronymic.Contains(PatrSearch1.Text)
                                      ).ToList();
                 if (res.Count() != 0)
                     lb_Students.ItemsSource = res;
@@ -295,7 +295,7 @@ namespace ELjournal.Windows
             else if (rb_Prep.IsChecked == true)
             {
                 var tabb = context.Teachers.ToList().Where(i => i.available == 1);
-                if (FamSearch10.Text.Length == 0 && 
+                if (FamSearch10.Text.Length == 0 &&
                     ImySearch10.Text.Length == 0 &&
                     PatrSearch10.Text.Length == 0)
                 {

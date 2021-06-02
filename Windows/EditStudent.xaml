@@ -29,33 +29,54 @@
                FontSize="30"/>
         <StackPanel Grid.Row="1">
             <TextBlock Text="Имя"
-                       FontSize="20"/>
-            <TextBox x:Name="edName"/>
+                       FontSize="20"
+                       Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="edName"
+                     FontSize="16"/>
             
             <TextBlock Text="Фамилия"
-                       FontSize="20"/>
-            <TextBox x:Name="edLName"/>
+                       FontSize="20"
+                        Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="edLName"
+                     FontSize="16"/>
             
             <TextBlock Text="Отчество"
-                       FontSize="20"/>
-            <TextBox x:Name="edPatr"/>
+                       FontSize="20"
+                        Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="edPatr"
+                     FontSize="16"/>
 
             <TextBlock Text="E-Mail"
-                       FontSize="20"/>
-            <TextBox x:Name="edEmail"/>
+                       FontSize="20"
+                        Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="edEmail"
+                     FontSize="16"/>
 
             <TextBlock Text="Группа"
-                       FontSize="20"/>
+                       FontSize="20"
+                        Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
             <ComboBox x:Name="edGroup"
-                      Width="200"/>
+                      Width="200"
+                      FontSize="14"/>
 
             <TextBlock Text="Логин"
-                       FontSize="20"/>
-            <TextBox x:Name="edLog"/>
+                       FontSize="20"
+                        Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="edLog"
+                     FontSize="16"/>
 
             <TextBlock Text="Пароль"
-                       FontSize="20"/>
-            <TextBox x:Name="edPass"/>
+                       FontSize="20"
+                        Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="edPass"
+                     FontSize="16"/>
 
             <Button x:Name="saveCh"
                     Content="Сохранить изменения"

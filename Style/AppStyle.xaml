@@ -70,6 +70,8 @@
                 Value="#7465e6"/>
         <Setter Property="BorderThickness"
                 Value="3"/>
+        <Setter Property="FontFamily" 
+                Value ="Times New Roman"/>
         <Setter Property="Background"
                 Value="#EFF1DC"/>
     </Style>

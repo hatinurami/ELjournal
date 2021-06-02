@@ -78,11 +78,11 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="Имя"
-                                            DisplayMemberBinding="{Binding lName}"
+                                            DisplayMemberBinding="{Binding fName}"
                                             Width="auto"
                                             />
                         <GridViewColumn Header="Фамилия"
-                                            DisplayMemberBinding="{Binding fName}"
+                                            DisplayMemberBinding="{Binding lName}"
                                             Width="auto"/>
                         <GridViewColumn Header="Отчество"
                                             DisplayMemberBinding="{Binding ptronymic}"
@@ -178,7 +178,7 @@
                     <GroupBox.Header>
                         <StackPanel Orientation="Horizontal">
 
-                            <TextBlock Text="Поиск" VerticalAlignment="Center" />
+                            <TextBlock Text="Поиск преподавателей" VerticalAlignment="Center" />
                         </StackPanel>
                     </GroupBox.Header>
                     <StackPanel Orientation="Vertical">

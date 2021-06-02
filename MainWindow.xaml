@@ -9,17 +9,21 @@
         Style="{StaticResource winSt}"
         Height="420"
         Width="400"
+        WindowStyle="None"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
             <Label 
                Content="Авторизация"
                FontSize="50"
+                Margin="10"
                HorizontalAlignment="Center"/>
             <TextBlock 
                 Text="Логин"
                 FontSize="30"
-                Margin="50 10"/>
+                Margin="50 10"
+                Style="{StaticResource tbStyle}"/>
             <TextBox
                 x:Name="txt_Login"
                 Width="300"
@@ -28,6 +32,7 @@
             <TextBlock 
                 Text="Пароль"
                 FontSize="30"
+                Style="{StaticResource tbStyle}"
                 Margin="50 10"/>
             <PasswordBox
                 x:Name="psb_Password"
@@ -43,6 +48,13 @@
                 Width="160"
                 IsDefault="True"
                 Click="btn_Enter_Click"/>
+            <Button x:Name="Exit"
+                    Content="Выйти"
+                    FontSize="20"
+                    Width="100"
+                    BorderThickness="0"
+                    Click="Exit_Click"
+                    BorderBrush="{x:Null}"/>
 
         </StackPanel>
     </Grid>
