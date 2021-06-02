@@ -99,7 +99,8 @@
                             <StackPanel Orientation="Vertical">
                                 <StackPanel x:Name="FamSearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                                     <Label Content="Фамилия" />
-                                    <TextBox x:Name="FamSearch1" Width="100" />
+                                    <TextBox x:Name="FamSearch1" Width="100"
+											 Margin=" 0 5 0 5"/>
                                 </StackPanel>
                                 <StackPanel x:Name="ImySearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                                     <Label Content="Имя" />
@@ -151,17 +152,29 @@
             </ComboBox>
 
         </WrapPanel>
-        <WrapPanel Grid.Row="1"
+		<Border Grid.Row="1"
                    Grid.Column="1"
                    x:Name="WPnl"
-                   Visibility="Hidden">
+                   Visibility="Hidden"
+				BorderBrush="BlueViolet"
+				Background="AliceBlue"
+				BorderThickness="5"
+				Height="36"
+				Width="450">
+			
+        <WrapPanel >
+
             <TextBlock x:Name="tbName"
                        Width="auto"
-                       FontSize="13"
+					   Text="BvZ"
+                       FontSize="16"
+					   Style="{StaticResource tbStyle}"
                        Background="Snow"/>
             <TextBlock x:Name="tbLName"
                        Width="auto"
-                       FontSize="13"
+					   Text="JHGF"
+					    Style="{StaticResource tbStyle}"
+                       FontSize="16"
                        Background="Snow"/>
             <ComboBox x:Name="cbMark"/>
             <TextBox x:Name="txtComm"
@@ -171,6 +184,7 @@
                     Content="ok"
                     Click="ok_Click"/>
         </WrapPanel>
+		</Border>
 
     </Grid>
 </Window>

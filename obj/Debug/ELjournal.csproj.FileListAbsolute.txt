@@ -129,7 +129,6 @@ F:\ELjournal\obj\Debug\Windows\EditStudent.g.cs
 F:\ELjournal\obj\Debug\Windows\EditTeacher.g.cs
 F:\ELjournal\obj\Debug\Windows\EditStudent.baml
 F:\ELjournal\obj\Debug\Windows\EditTeacher.baml
-D:\ELjournal\obj\Debug\ELjournal.csproj.AssemblyReference.cache
 C:\Users\Hati nurami\Source\Repos\ELjournal\bin\Debug\ELjournal.exe.config
 C:\Users\Hati nurami\Source\Repos\ELjournal\bin\Debug\ELjournal.exe
 C:\Users\Hati nurami\Source\Repos\ELjournal\bin\Debug\ELjournal.pdb
@@ -166,3 +165,4 @@ C:\Users\Hati nurami\Source\Repos\ELjournal\obj\Debug\ELjournal.csproj.CoreCompi
 C:\Users\Hati nurami\Source\Repos\ELjournal\obj\Debug\ELjournal.csproj.CopyComplete
 C:\Users\Hati nurami\Source\Repos\ELjournal\obj\Debug\ELjournal.exe
 C:\Users\Hati nurami\Source\Repos\ELjournal\obj\Debug\ELjournal.pdb
+D:\ELjournal\obj\Debug\ELjournal.csproj.AssemblyReference.cache

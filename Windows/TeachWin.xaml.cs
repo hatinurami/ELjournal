@@ -174,8 +174,7 @@ namespace ELjournal.Windows
             var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).FirstOrDefault();
             var datasourse = context.Journal.Where(i => i.idSubj == subN.idSubj).ToList();
             var edit = context.Students.Where(i => i.idStud == datasourse.Select(c => c.idStudent).First()).FirstOrDefault();
-            if (FamSearch1.Text.Length == 0 && ImySearch1.Text.Length == 0
-               )
+            if (FamSearch1.Text.Length == 0 && ImySearch1.Text.Length == 0)
             {
                 lbJournal.ItemsSource = datasourse.ToList();
                 return;

@@ -31,7 +31,8 @@
             <WrapPanel>
                 <TextBlock Text="Пользователь:"                       
                            Height="30"
-                           FontSize="20"
+                           FontSize="25"
+						   Style="{StaticResource tbStyle}"
                            Margin ="15 5"
                        />
                 <GroupBox Width="320"
@@ -46,6 +47,7 @@
                                 Margin="0 0 15 0"
                                 Click ="rbAddMode_Prep_Click"
                                 GroupName="addmode"
+								
                             />
                             <RadioButton
                                 x:Name="rbAddMode_Stud"
@@ -64,15 +66,17 @@
                      x:Name="canvStud"
                      >
                 <TextBlock Text="Имя"
-                           FontSize="22"
+                           FontSize="25"
                            Canvas.Left="60"
+						   Style="{StaticResource tbStyle}"
                            Canvas.Top="10"/>
                 <TextBox x:Name="txtName"
                          FontSize="16"
                          Canvas.Left="120"
                          Canvas.Top="14"/>
                 <TextBlock Text="Фамилия"
-                           FontSize="22"
+                           FontSize="25"
+						   Style="{StaticResource tbStyle}"
                            Canvas.Left="10"
                            Canvas.Top="50"/>
                 <TextBox x:Name="txtlName"
@@ -80,7 +84,8 @@
                          FontSize="16"
                          Canvas.Top="54"/>
                 <TextBlock Text="Отчество"
-                           FontSize="22"
+                           FontSize="25"
+						   Style="{StaticResource tbStyle}"
                            Canvas.Left="10"
                            Canvas.Top="96"/>
                 <TextBox x:Name="txtPatr"
@@ -88,8 +93,9 @@
                          Canvas.Top="100"
                          FontSize="16"/>
                 <TextBlock Text="Пол"
-                           FontSize="22"
+                           FontSize="25"
                            Canvas.Left="60"
+						   Style="{StaticResource tbStyle}"
                            Canvas.Top="138"/>
                 <GroupBox Canvas.Top="142"
                          Canvas.Left="120"
@@ -111,7 +117,8 @@
                 </GroupBox>
                 <TextBlock Text="Группа"
                            x:Name="tbl_group"
-                           FontSize="22"
+                           FontSize="25"
+						   Style="{StaticResource tbStyle}"
                            Canvas.Left="30"
                            Canvas.Top="178"/>
                 <ComboBox x:Name="cbx_group"
@@ -122,8 +129,9 @@
                           SelectedValuePath="idGroup"
                           />
                 <TextBlock Text="EMail"
-                           FontSize="22"
+                           FontSize="25"
                            Canvas.Left="359"
+						   Style="{StaticResource tbStyle}"
                            Canvas.Top="10"/>
                 <TextBox x:Name="txt_eMail"
                          FontSize="16"                          
@@ -132,7 +140,8 @@
                          Canvas.Top="14"/>
 
                 <TextBlock Text="Логин"
-                           FontSize="22"
+                           FontSize="25"
+						   Style="{StaticResource tbStyle}"
                            Canvas.Left="359"
                            Canvas.Top="96"/>
                 <TextBox x:Name="txt_log"
@@ -141,7 +150,8 @@
                          Canvas.Left="430" 
                          Canvas.Top="100"/>
                 <TextBlock Text="Пароль"
-                           FontSize="22"
+                           FontSize="25"
+						   Style="{StaticResource tbStyle}"
                            Canvas.Left="347"
                            Canvas.Top="146"/>
                 <TextBox x:Name="txt_pass"
