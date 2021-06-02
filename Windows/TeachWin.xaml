@@ -24,6 +24,7 @@
         <TextBlock Text="ИО Препод, предмет"
                x:Name="TeachNameLab"
                FontSize="25"
+                   Style="{StaticResource tbStyle}"
                Margin="10"
                Grid.ColumnSpan="2"
                TextWrapping="Wrap"/>
@@ -68,7 +69,8 @@
         </ListView>
         <StackPanel Grid.Row="1" Grid.RowSpan="2">
             <TextBlock Text="Группа: "
-                       FontSize="25"/>
+                       FontSize="25"
+                       Style="{StaticResource tbStyle}"/>
             <ComboBox x:Name="cbGroup"
                       Margin="5"
                       SelectionChanged ="cbGroup_SelectionChanged"
@@ -103,11 +105,7 @@
                                     <Label Content="Имя" />
                                     <TextBox x:Name="ImySearch1" Width="100"/>
                                 </StackPanel>
-                                <StackPanel x:Name="PatrSearch" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                    <Label Content="Отчество" />
-                                    <TextBox x:Name="PatrSearch1" Width="100"/>
-                                </StackPanel>
-
+                            
                             </StackPanel>
                         </Grid>
                     </StackPanel>
@@ -136,7 +134,8 @@
                 Click="btn_Next_Click"
                 Margin="10 8 0 8"/>
             <TextBlock                 
-                Margin="100 8 8 8"                
+                Margin="100 8 8 8" 
+                Style="{StaticResource tbStyle}"
                 >
                 <Run Text="Количество записей на странице: "/>
 
