@@ -1,0 +1,92 @@
+﻿<Window x:Class="ELjournal.Windows.MarkWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ELjournal.Windows"
+        Style="{StaticResource winSt}"
+        WindowStyle="None"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="EditStudent"
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize"
+        MaxHeight="500"
+        SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Exit"
+                Click="Exit_Click"
+                Height="15"
+                FontSize ="5.6"
+                Content="X"
+                Width="15"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="2"/>
+        <Label Content="Поставить оценку"
+               Margin="20"
+               FontSize="30"/>
+        <StackPanel Grid.Row="1">
+           
+            <TextBlock Text="Группа"
+                      Margin=" 0 15 0 0"
+                       FontSize="20"
+                       Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+            <ComboBox x:Name="edGroup"
+                      Width="200"
+                      FontSize="14"
+                      SelectionChanged="edGroup_SelectionChanged"/>
+
+            <StackPanel x:Name="spStud"
+                        Visibility="Collapsed">
+                
+            <TextBlock Text="Студент"
+                       Margin=" 0 15 0 0"
+                       x:Name="tblStud"
+                       FontSize="20"
+                       Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+            <ComboBox x:Name="cbStud"
+                      Width="200"
+                      FontSize="14"
+                      SelectionChanged="cbStud_SelectionChanged"/>
+            </StackPanel>
+
+            <StackPanel x:Name="spMrk"
+                        Visibility="Collapsed">
+                <TextBlock Text="Оценка"
+                       Margin=" 0 15 0 0"
+                       x:Name="tblMark"
+                       FontSize="20"
+                       Style="{StaticResource tbStyle}"
+                       HorizontalAlignment="Center"/>
+                <ComboBox x:Name="cbMark"
+                      Width="200"
+                      FontSize="14"
+                      SelectionChanged="cbMark_SelectionChanged"/>
+            <TextBox x:Name="tbx"
+                     Margin=" 0 15 0 0"
+                     Text="Комментарий"
+                     Height="auto"
+                     MaxHeight="150"
+                     TextWrapping="Wrap"
+                    />
+            </StackPanel>
+
+
+            <Button x:Name="saveCh"
+                    Content="Добавить"
+                    Height="25"
+                    Width="100"
+                    Margin="10"
+                    IsDefault="True"                   
+                    Click="saveCh_Click"
+                    />
+        </StackPanel>
+    </Grid>
+</Window>

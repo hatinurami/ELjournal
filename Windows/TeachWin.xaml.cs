@@ -21,15 +21,18 @@ namespace ELjournal.Windows
     /// </summary>
     public partial class TeachWin : Window
     {
-        Journal edJ;
+        public static Journal edJ;
         public int RowAll { get; set; }
         public int Page { get; set; }
 
         public TeachWin()
         {
             InitializeComponent();
-            var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).Select(c => c.subjName).First();
-            string prepN = $"{userTeach.lName} {userTeach.ptronymic}: {subN}";
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var sub = context.Subjects.Where(i => i.idSubj == userTeach.idSubj).Select(c => c.subjName).First();
+            string prepN = $"{userTeach.fName} {userTeach.ptronymic}: {sub}";
             TeachNameLab.Text = prepN;
             cb_NumItems.ItemsSource = new List<string>()
             {
@@ -39,7 +42,7 @@ namespace ELjournal.Windows
                 "All"
             };
             cb_NumItems.SelectedIndex = 0;
-
+            cbGroup.SelectedIndex = 0;
             cbMark.ItemsSource = new List<string>()
             {
                 "1",
@@ -47,26 +50,29 @@ namespace ELjournal.Windows
                 "3",
                 "4",
                 "5",
-                "Н"
+                
             };
             Update();
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
 
         }
 
         public void Update()
         {
-            var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).FirstOrDefault();
-            var datasourse = context.Journal.Where(i => i.idSubj == subN.idSubj ).ToList();
+            var jrnl = context.Journal.Where(i => i.idTeach == userTeach.idTeach).Select(c => c.idGroup).ToList();
+            List<string> grItem = new List<string>();
+            foreach (var item in jrnl)
+            {
+                grItem.Add(context.Group.Where(i => i.idGroup == item).Select(i => i.nameGroup).FirstOrDefault());                
+            }
+           
+            cbGroup.ItemsSource = grItem.Distinct();
+
+            var sub = context.Subjects.Where(i => i.idSubj == userTeach.idSubj).FirstOrDefault();
+            var et = context.Group.Where(t => t.nameGroup == cbGroup.SelectedItem).Select(e => e.idGroup).FirstOrDefault();
+            var datasourse = context.Journal.Where(i => i.idSubj == sub.idSubj && i.idGroup == et).ToList();
             RowAll = datasourse.Count();
 
-            var jrnl = context.Journal.Where(i => i.idSubj == subN.idSubj).FirstOrDefault();
-            var grquery = context.Group.Where(d => d.idGroup == jrnl.idGroup).Select(i => i.nameGroup).ToList();
-            grquery.Insert(0, "Выберите группу");
-            cbGroup.ItemsSource = grquery;
-            cbGroup.SelectedIndex = 0;
+
 
             switch (cb_NumItems.SelectedIndex)
             {
@@ -89,7 +95,7 @@ namespace ELjournal.Windows
                 default:
                     break;
             }
-            lbJournal.ItemsSource = datasourse;
+            LoadList(datasourse);
             btn_Back.IsEnabled = Page != 0;
 
         }
@@ -120,6 +126,16 @@ namespace ELjournal.Windows
             }
 
         }
+
+        public void LoadList(List<Journal> journals)
+        {
+            lbJournal.Items.Clear();
+            foreach (var item in journals)
+            {
+                lbJournal.Items.Add(item);
+            }
+        }
+
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -128,8 +144,7 @@ namespace ELjournal.Windows
                 {
                     edJ.mark = cbMark.SelectedIndex +1;
                 }
-                edJ.comment = txtComm.Text;
-                edJ.dateM = DateTime.Today;
+                edJ.comment = txtComm.Text;               
                 context.SaveChanges();
                 var mes = MessageBox.Show("Данные обновлены", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
                 if (mes == MessageBoxResult.OK)
@@ -158,47 +173,63 @@ namespace ELjournal.Windows
 
         private void cbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           // Update();
+            
+            Page = 0;
+            Update();
+
         }
 
         private void ResetSearch(object sende, RoutedEventArgs e)
         {
             FamSearch1.Text = "";
             ImySearch1.Text = "";
+            var sub = context.Subjects.Where(i => i.idSubj == userTeach.idSubj).FirstOrDefault();
+            var et = context.Group.Where(t => t.nameGroup == cbGroup.SelectedItem).Select(r => r.idGroup).FirstOrDefault();
 
-            var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).FirstOrDefault();
-            lbJournal.ItemsSource = context.Journal.Where(i => i.idSubj == subN.idSubj).ToList();
+            List<Journal> journals = context.Journal.Where(i => i.idSubj == sub.idSubj && i.idGroup == et).ToList();
+            LoadList(journals);
+
         }
         private void Search(object sender, RoutedEventArgs e)
         {
             try
             {
-            var subN = context.Subjects.Where(i => i.idTeach == userTeach.idTeach).FirstOrDefault();
-            var datasourse = context.Journal.Where(i => i.idSubj == subN.idSubj).ToList();
-            var edit = context.Students.Where(i => i.idStud == datasourse.Select(c => c.idStudent).First()).FirstOrDefault();
-            if (FamSearch1.Text.Length == 0 && ImySearch1.Text.Length == 0)
-            {
-                lbJournal.ItemsSource = datasourse.ToList();
-                return;
-            }
+                var sub = context.Subjects.Where(i => i.idSubj == userTeach.idSubj).FirstOrDefault();
+                var et = context.Group.Where(t => t.nameGroup == cbGroup.SelectedItem).Select(r => r.idGroup).FirstOrDefault();
 
-            var res = datasourse.Where(i => 
-                                 edit.fName.Contains(ImySearch1.Text) &&
-                                 edit.lName.Contains(FamSearch1.Text)
-                                 ).ToList();
-            if (res.Count() != 0)
-                lbJournal.ItemsSource = res;
-            else
-                MessageBox.Show("Внимание!", " Не найдено!",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                List<Journal> journals = context.Journal.Where(i => i.idSubj == sub.idSubj && i.idGroup == et).ToList();
+
+                if (FamSearch1.Text != "")
+                {
+                    int students = context.Students.Where(i => i.lName == FamSearch1.Text).Select(w => w.idStud).FirstOrDefault();
+                    journals = journals.FindAll(i => i.idStudent == students);
+                }
+                
+                if (ImySearch1.Text != "")
+                {
+                    int students = context.Students.Where(i => i.fName == ImySearch1.Text).Select(w => w.idStud).FirstOrDefault();
+                    journals = journals.FindAll(i => i.idStudent == students);
+                }
+                if (journals.Count == 0)
+                {
+                    MessageBox.Show("Не найдено!",  "Внимание!", 
+                       MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                LoadList(journals);
 
             }
             catch 
             {
-
                 MessageBox.Show("Извините, но оно пока что не работает", "УПС", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+
+        private void AddMark_Click(object sender, RoutedEventArgs e)
+        {
+            MarkWin mark = new MarkWin();
+            mark.ShowDialog();
+            ResetSearch(sender, e);
         }
     }
 }

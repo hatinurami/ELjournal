@@ -23,9 +23,9 @@ namespace ELjournal.AppData
         public string comment { get; set; }
         public int idGroup { get; set; }
     
+        public virtual Group Group { get; set; }
         public virtual Students Students { get; set; }
         public virtual Subjects Subjects { get; set; }
         public virtual Teachers Teachers { get; set; }
-        public virtual Group Group { get; set; }
     }
 }

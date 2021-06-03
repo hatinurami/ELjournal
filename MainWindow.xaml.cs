@@ -33,7 +33,7 @@ namespace ELjournal
             try
             {
 
-                var autoriz = context.Autoriz.ToList().Where(i => i.login == txt_Login.Text && i.password == psb_Password.Password).FirstOrDefault();
+                var autoriz = context.Autoriz.Where(i => i.login == txt_Login.Text && i.password == psb_Password.Password).FirstOrDefault();
                 if (autoriz != null)
                 {
                     var user = context.Teachers.Where(i => i.login == autoriz.idAutoriz ).FirstOrDefault();
@@ -41,8 +41,8 @@ namespace ELjournal
                     if (user != null && user2 == null && autoriz.uRole == 2 && user.available == 1)
                     {
                         userTeach = user;                       
-                        Hide();
                         TeachWin teach = new TeachWin();
+                        Hide();
                         teach.ShowDialog();
                         Show();
 
@@ -69,10 +69,10 @@ namespace ELjournal
                 }
                 else MessageBox.Show("Пользователь не найден");
             }
-            catch (Exception)
+            catch (Exception g)
             {
-                MessageBox.Show("Что-то пошло не так!");
-                
+                MessageBox.Show(g.Message, "Что-то пошло не так!");
+
             }
 
         }

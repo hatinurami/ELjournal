@@ -18,7 +18,6 @@ namespace ELjournal.AppData
         public Teachers()
         {
             this.Journal = new HashSet<Journal>();
-            this.Subjects = new HashSet<Subjects>();
         }
     
         public int idTeach { get; set; }
@@ -27,14 +26,14 @@ namespace ELjournal.AppData
         public string ptronymic { get; set; }
         public int gender { get; set; }
         public string eMail { get; set; }
-        public Nullable<int> login { get; set; }
+        public int login { get; set; }
         public int available { get; set; }
+        public int idSubj { get; set; }
     
+        public virtual Autoriz Autoriz { get; set; }
         public virtual Gender Gender1 { get; set; }
+        public virtual Subjects Subjects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Journal> Journal { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subjects> Subjects { get; set; }
-        public virtual Autoriz Autoriz { get; set; }
     }
 }

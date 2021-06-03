@@ -17,19 +17,16 @@ namespace ELjournal.AppData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Group()
         {
-            this.Students = new HashSet<Students>();
             this.Journal = new HashSet<Journal>();
-            this.Students1 = new HashSet<Students>();
+            this.Students = new HashSet<Students>();
         }
     
         public int idGroup { get; set; }
         public string nameGroup { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Students> Students { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Journal> Journal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Students> Students1 { get; set; }
+        public virtual ICollection<Students> Students { get; set; }
     }
 }

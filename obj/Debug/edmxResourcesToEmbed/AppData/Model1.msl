@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище ElJournalModelContainer" CdmEntityContainer="ElJournalEntities">
+    <EntitySetMapping Name="Autoriz">
+      <EntityTypeMapping TypeName="ElJournalModel.Autoriz">
+        <MappingFragment StoreEntitySet="Autoriz">
+          <ScalarProperty Name="idAutoriz" ColumnName="idAutoriz" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="uRole" ColumnName="uRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Gender">
       <EntityTypeMapping TypeName="ElJournalModel.Gender">
         <MappingFragment StoreEntitySet="Gender">
@@ -20,28 +30,36 @@
     <EntitySetMapping Name="Journal">
       <EntityTypeMapping TypeName="ElJournalModel.Journal">
         <MappingFragment StoreEntitySet="Journal">
-          <ScalarProperty Name="idGroup" ColumnName="idGroup" />
-          <ScalarProperty Name="comment" ColumnName="comment" />
           <ScalarProperty Name="idJournal" ColumnName="idJournal" />
           <ScalarProperty Name="idStudent" ColumnName="idStudent" />
           <ScalarProperty Name="mark" ColumnName="mark" />
           <ScalarProperty Name="idSubj" ColumnName="idSubj" />
           <ScalarProperty Name="dateM" ColumnName="dateM" />
           <ScalarProperty Name="idTeach" ColumnName="idTeach" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="ElJournalModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="idRole" ColumnName="idRole" />
+          <ScalarProperty Name="nameRole" ColumnName="nameRole" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Students">
       <EntityTypeMapping TypeName="ElJournalModel.Students">
         <MappingFragment StoreEntitySet="Students">
-          <ScalarProperty Name="available" ColumnName="available" />
-          <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="idStud" ColumnName="idStud" />
           <ScalarProperty Name="fName" ColumnName="fName" />
           <ScalarProperty Name="lName" ColumnName="lName" />
           <ScalarProperty Name="patronymic" ColumnName="patronymic" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="eMail" ColumnName="eMail" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="available" ColumnName="available" />
           <ScalarProperty Name="idGroup" ColumnName="idGroup" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -51,7 +69,6 @@
         <MappingFragment StoreEntitySet="Subjects">
           <ScalarProperty Name="idSubj" ColumnName="idSubj" />
           <ScalarProperty Name="subjName" ColumnName="subjName" />
-          <ScalarProperty Name="idTeach" ColumnName="idTeach" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -69,32 +86,15 @@
     <EntitySetMapping Name="Teachers">
       <EntityTypeMapping TypeName="ElJournalModel.Teachers">
         <MappingFragment StoreEntitySet="Teachers">
-          <ScalarProperty Name="available" ColumnName="available" />
-          <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="idTeach" ColumnName="idTeach" />
           <ScalarProperty Name="fName" ColumnName="fName" />
           <ScalarProperty Name="lName" ColumnName="lName" />
           <ScalarProperty Name="ptronymic" ColumnName="ptronymic" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="eMail" ColumnName="eMail" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Autoriz">
-      <EntityTypeMapping TypeName="ElJournalModel.Autoriz">
-        <MappingFragment StoreEntitySet="Autoriz">
-          <ScalarProperty Name="uRole" ColumnName="uRole" />
-          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="login" ColumnName="login" />
-          <ScalarProperty Name="idAutoriz" ColumnName="idAutoriz" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Role">
-      <EntityTypeMapping TypeName="ElJournalModel.Role">
-        <MappingFragment StoreEntitySet="Role">
-          <ScalarProperty Name="nameRole" ColumnName="nameRole" />
-          <ScalarProperty Name="idRole" ColumnName="idRole" />
+          <ScalarProperty Name="available" ColumnName="available" />
+          <ScalarProperty Name="idSubj" ColumnName="idSubj" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

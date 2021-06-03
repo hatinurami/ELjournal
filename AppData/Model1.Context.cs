@@ -25,14 +25,14 @@ namespace ELjournal.AppData
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Autoriz> Autoriz { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Journal> Journal { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<Subjects> Subjects { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Teachers> Teachers { get; set; }
-        public virtual DbSet<Autoriz> Autoriz { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
     }
 }

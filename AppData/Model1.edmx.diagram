@@ -4,28 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f0f2ea023067441cb8395572604d0351" Name="Diagram1">
-        <EntityTypeShape EntityType="ElJournalModel.Gender" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElJournalModel.Group" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElJournalModel.Journal" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElJournalModel.Students" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElJournalModel.Subjects" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElJournalModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElJournalModel.Teachers" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+      <Diagram DiagramId="1a87fecd50bc4f1baaf4d6a2ed9c21f6" Name="Diagram1" ZoomLevel="108">
+        <EntityTypeShape EntityType="ElJournalModel.Autoriz" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Gender" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Group" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Journal" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Role" Width="1.5" PointX="1.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Students" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Subjects" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.sysdiagrams" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElJournalModel.Teachers" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="ElJournalModel.FK_Autoriz_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Students_Autoriz" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Teachers_Autoriz" ManuallyRouted="false" />
         <AssociationConnector Association="ElJournalModel.FK_Students_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="ElJournalModel.FK_Teachers_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Journal_Group" ManuallyRouted="false" />
         <AssociationConnector Association="ElJournalModel.FK_Students_Group" ManuallyRouted="false" />
         <AssociationConnector Association="ElJournalModel.FK_Journal_Students" ManuallyRouted="false" />
         <AssociationConnector Association="ElJournalModel.FK_Journal_Subjects" ManuallyRouted="false" />
-        <AssociationConnector Association="ElJournalModel.FK_Journal_Teachers" ManuallyRouted="false" />
-        <AssociationConnector Association="ElJournalModel.FK_Subjects_Teachers" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ElJournalModel.Autoriz" Width="1.5" PointX="10.625" PointY="0.875" />
-        <EntityTypeShape EntityType="ElJournalModel.Role" Width="1.5" PointX="8.375" PointY="1.125" />
-        <AssociationConnector Association="ElJournalModel.FK_Autoriz_Role" />
-        <AssociationConnector Association="ElJournalModel.FK_Students_Autoriz" />
-        <AssociationConnector Association="ElJournalModel.FK_Teachers_Autoriz" />
-        <AssociationConnector Association="ElJournalModel.FK_Journal_Group" />
-        <AssociationConnector Association="ElJournalModel.FK_Students_Group1" />
+        <AssociationConnector Association="ElJournalModel.FK_Teachers_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="ElJournalModel.FK_Journal_Teachers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

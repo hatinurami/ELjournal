@@ -33,7 +33,7 @@
     <Property Name="idSubj" Type="int" Nullable="false" />
     <Property Name="dateM" Type="date" />
     <Property Name="idTeach" Type="int" Nullable="false" />
-    <Property Name="comment" Type="nvarchar" MaxLength="255" />
+    <Property Name="comment" Type="nvarchar(max)" />
     <Property Name="idGroup" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
@@ -63,7 +63,6 @@
     </Key>
     <Property Name="idSubj" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="subjName" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="idTeach" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -85,8 +84,9 @@
     <Property Name="ptronymic" Type="nvarchar" MaxLength="30" />
     <Property Name="gender" Type="int" Nullable="false" />
     <Property Name="eMail" Type="nchar" MaxLength="10" />
-    <Property Name="login" Type="int" />
+    <Property Name="login" Type="int" Nullable="false" />
     <Property Name="available" Type="int" Nullable="false" />
+    <Property Name="idSubj" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Autoriz_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -184,20 +184,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Subjects_Teachers">
-    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
-    <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Teachers">
-        <PropertyRef Name="idTeach" />
-      </Principal>
-      <Dependent Role="Subjects">
-        <PropertyRef Name="idTeach" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Teachers_Autoriz">
-    <End Role="Autoriz" Type="Self.Autoriz" Multiplicity="0..1" />
+    <End Role="Autoriz" Type="Self.Autoriz" Multiplicity="1" />
     <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Autoriz">
@@ -217,6 +205,18 @@
       </Principal>
       <Dependent Role="Teachers">
         <PropertyRef Name="gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teachers_Subjects">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="idSubj" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="idSubj" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -262,16 +262,16 @@
       <End Role="Group" EntitySet="Group" />
       <End Role="Students" EntitySet="Students" />
     </AssociationSet>
-    <AssociationSet Name="FK_Subjects_Teachers" Association="Self.FK_Subjects_Teachers">
-      <End Role="Teachers" EntitySet="Teachers" />
-      <End Role="Subjects" EntitySet="Subjects" />
-    </AssociationSet>
     <AssociationSet Name="FK_Teachers_Autoriz" Association="Self.FK_Teachers_Autoriz">
       <End Role="Autoriz" EntitySet="Autoriz" />
       <End Role="Teachers" EntitySet="Teachers" />
     </AssociationSet>
     <AssociationSet Name="FK_Teachers_Gender" Association="Self.FK_Teachers_Gender">
       <End Role="Gender" EntitySet="Gender" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teachers_Subjects" Association="Self.FK_Teachers_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
       <End Role="Teachers" EntitySet="Teachers" />
     </AssociationSet>
   </EntityContainer>

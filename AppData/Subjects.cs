@@ -18,14 +18,15 @@ namespace ELjournal.AppData
         public Subjects()
         {
             this.Journal = new HashSet<Journal>();
+            this.Teachers = new HashSet<Teachers>();
         }
     
         public int idSubj { get; set; }
         public string subjName { get; set; }
-        public int idTeach { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Journal> Journal { get; set; }
-        public virtual Teachers Teachers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Teachers> Teachers { get; set; }
     }
 }

@@ -32,6 +32,9 @@ namespace ELjournal.Windows
             var gr = context.Group;
             cbx_group.ItemsSource = gr.ToList();
 
+            var disc = context.Subjects;
+            cbx_subj.ItemsSource = disc.ToList();
+
         }
 
         private void btn_addStud_Click(object sender, RoutedEventArgs e)
@@ -87,6 +90,7 @@ namespace ELjournal.Windows
                        txtName.Text == string.Empty ||
                        txtlName.Text == string.Empty ||
                        txtPatr.Text == string.Empty ||
+                       cbx_subj.SelectedItem == null ||
                        txt_eMail.Text == string.Empty ||
                        txt_log.Text == string.Empty ||
                        txt_pass.Text == string.Empty)
@@ -103,6 +107,8 @@ namespace ELjournal.Windows
                         }
                         );
 
+                        
+
                         Teachers teachers = context.Teachers.Add(new Teachers
                         {
                             fName = txtName.Text,
@@ -111,7 +117,8 @@ namespace ELjournal.Windows
                             gender = rb_genM.IsChecked == true ? 1 : 2,
                             eMail = txt_eMail.Text,
                             login = autoriz.idAutoriz,
-                            available = 1
+                            available = 1,
+                            idSubj = cbx_subj.SelectedIndex +1
 
 
                         }
@@ -135,10 +142,20 @@ namespace ELjournal.Windows
             if (rbAddMode_Prep.IsChecked == true)
             {
                 cbx_group.Visibility = Visibility.Hidden;
+                tbl_group.Visibility = Visibility.Hidden;
+
+                cbx_subj.Visibility = Visibility.Visible;
+                tbl_subj.Visibility = Visibility.Visible;
+
             }
             else if (rbAddMode_Stud.IsChecked == true)
             {
                 cbx_group.Visibility = Visibility.Visible;
+                tbl_group.Visibility = Visibility.Visible;
+
+
+                cbx_subj.Visibility = Visibility.Hidden;
+                tbl_subj.Visibility = Visibility.Hidden;
             }
 
         }
@@ -149,12 +166,20 @@ namespace ELjournal.Windows
         {
             cbx_group.Visibility = Visibility.Hidden;
             tbl_group.Visibility = Visibility.Hidden;
+
+            cbx_subj.Visibility = Visibility.Visible;
+            tbl_subj.Visibility = Visibility.Visible;
+            
         }
 
         private void rbAddMode_Stud_Click(object sender, RoutedEventArgs e)
         {
             cbx_group.Visibility = Visibility.Visible;
             tbl_group.Visibility = Visibility.Visible;
+
+
+            cbx_subj.Visibility = Visibility.Hidden;
+            tbl_subj.Visibility = Visibility.Hidden;
         }
     }
 }
