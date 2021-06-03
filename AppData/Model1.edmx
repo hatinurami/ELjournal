@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище ElJournalModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище ElJournalModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Autoriz">
           <Key>
             <PropertyRef Name="idAutoriz" />
@@ -280,7 +280,8 @@
             <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ElJournalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -329,7 +330,7 @@
           <NavigationProperty Name="Group" Relationship="Self.FK_Journal_Group" FromRole="Journal" ToRole="Group" />
           <NavigationProperty Name="Students" Relationship="Self.FK_Journal_Students" FromRole="Journal" ToRole="Students" />
           <NavigationProperty Name="Subjects" Relationship="Self.FK_Journal_Subjects" FromRole="Journal" ToRole="Subjects" />
-          <NavigationProperty Name="Teachers" Relationship="ElJournalModel.FK_Journal_Teachers" FromRole="Journal" ToRole="Teachers" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Journal_Teachers" FromRole="Journal" ToRole="Teachers" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -391,8 +392,8 @@
           <Property Name="idSubj" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Autoriz" Relationship="Self.FK_Teachers_Autoriz" FromRole="Teachers" ToRole="Autoriz" />
           <NavigationProperty Name="Gender1" Relationship="Self.FK_Teachers_Gender" FromRole="Teachers" ToRole="Gender" />
+          <NavigationProperty Name="Journal" Relationship="Self.FK_Journal_Teachers" FromRole="Teachers" ToRole="Journal" />
           <NavigationProperty Name="Subjects" Relationship="Self.FK_Teachers_Subjects" FromRole="Teachers" ToRole="Subjects" />
-          <NavigationProperty Name="Journal" Relationship="ElJournalModel.FK_Journal_Teachers" FromRole="Teachers" ToRole="Journal" />
         </EntityType>
         <Association Name="FK_Autoriz_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -502,6 +503,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Journal_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="idTeach" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="idTeach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Teachers_Subjects">
           <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
           <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
@@ -560,27 +573,15 @@
             <End Role="Subjects" EntitySet="Subjects" />
             <End Role="Journal" EntitySet="Journal" />
           </AssociationSet>
+          <AssociationSet Name="FK_Journal_Teachers" Association="Self.FK_Journal_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
           <AssociationSet Name="FK_Teachers_Subjects" Association="Self.FK_Teachers_Subjects">
             <End Role="Subjects" EntitySet="Subjects" />
             <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
-          <AssociationSet Name="FK_Journal_Teachers" Association="ElJournalModel.FK_Journal_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="Journal" EntitySet="Journal" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Journal_Teachers">
-          <End Type="ElJournalModel.Teachers" Role="Teachers" Multiplicity="1" />
-          <End Type="ElJournalModel.Journal" Role="Journal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teachers">
-              <PropertyRef Name="idTeach" />
-            </Principal>
-            <Dependent Role="Journal">
-              <PropertyRef Name="idTeach" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

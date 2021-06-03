@@ -53,8 +53,9 @@ namespace ELjournal.Windows
         {
             try
             {
-                
-                var aut = context.Autoriz.Where(i => i.idAutoriz == editTeach.login).FirstOrDefault();
+                if (Valid.Validation.ValidateName(edName.Text) == true && Valid.Validation.ValidateName(edLName.Text) == true && Valid.Validation.ValidateName(edPatr.Text))
+                {
+                    var aut = context.Autoriz.Where(i => i.idAutoriz == editTeach.login).FirstOrDefault();
                 editTeach.fName = edName.Text;
                 editTeach.lName = edLName.Text;
                 editTeach.ptronymic = edPatr.Text;
@@ -66,6 +67,11 @@ namespace ELjournal.Windows
                 if (mes == MessageBoxResult.OK)
                 {
                     Exit_Click(sender, e);
+                }
+                }
+                else
+                {
+                    MessageBox.Show("Введите корректные данные!");
                 }
             }
             catch (Exception mes)

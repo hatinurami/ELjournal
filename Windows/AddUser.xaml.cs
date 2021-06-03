@@ -57,6 +57,8 @@ namespace ELjournal.Windows
                     }
                     else
                     {
+                        if (Valid.Validation.ValidateName(txtName.Text) == true && Valid.Validation.ValidateName(txtlName.Text) == true && Valid.Validation.ValidateName(txtPatr.Text))
+                        {
                         Autoriz autoriz = context.Autoriz.Add(new Autoriz
                         {
                             login = txt_log.Text,
@@ -82,11 +84,21 @@ namespace ELjournal.Windows
 
                         context.SaveChanges();
                         MessageBox.Show("Пользователь добавлен!");
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Введите корректные данные!");
+                        }
+
+
                     }
                 }
                 else if (rbAddMode_Prep.IsChecked == true)
                 {
-                    if (
+                    if (Valid.Validation.ValidateName(txtName.Text) == true && Valid.Validation.ValidateName(txtlName.Text) == true && Valid.Validation.ValidateName(txtPatr.Text))
+                    {
+                        if (
                        txtName.Text == string.Empty ||
                        txtlName.Text == string.Empty ||
                        txtPatr.Text == string.Empty ||
@@ -94,39 +106,43 @@ namespace ELjournal.Windows
                        txt_eMail.Text == string.Empty ||
                        txt_log.Text == string.Empty ||
                        txt_pass.Text == string.Empty)
-                    {
-                        MessageBox.Show("Заполните все поля!");
-                    }
-                    else
-                    {
-                        Autoriz autoriz = context.Autoriz.Add(new Autoriz
                         {
-                            login = txt_log.Text,
-                            password = txt_pass.Text,
-                            uRole = 2
+                            MessageBox.Show("Заполните все поля!");
                         }
-                        );
+                        else
+                        {
+                            Autoriz autoriz = context.Autoriz.Add(new Autoriz
+                            {
+                                login = txt_log.Text,
+                                password = txt_pass.Text,
+                                uRole = 2
+                            }
+                            );
 
+
+
+                            Teachers teachers = context.Teachers.Add(new Teachers
+                            {
+                                fName = txtName.Text,
+                                lName = txtlName.Text,
+                                ptronymic = txtPatr.Text,
+                                gender = rb_genM.IsChecked == true ? 1 : 2,
+                                eMail = txt_eMail.Text,
+                                login = autoriz.idAutoriz,
+                                available = 1,
+                                idSubj = cbx_subj.SelectedIndex + 1
+
+
+                            }
+                                );
+                            context.SaveChanges();
+                            MessageBox.Show("Пользователь добавлен!");
+                        }
                         
 
-                        Teachers teachers = context.Teachers.Add(new Teachers
-                        {
-                            fName = txtName.Text,
-                            lName = txtlName.Text,
-                            ptronymic = txtPatr.Text,
-                            gender = rb_genM.IsChecked == true ? 1 : 2,
-                            eMail = txt_eMail.Text,
-                            login = autoriz.idAutoriz,
-                            available = 1,
-                            idSubj = cbx_subj.SelectedIndex +1
-
-
-                        }
-                            ) ;
-                        context.SaveChanges();                        
-                        MessageBox.Show("Пользователь добавлен!");
-
                     }
+                    else
+                        MessageBox.Show("Введите корректные данные!");
                 }
 
             }

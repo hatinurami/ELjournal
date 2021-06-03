@@ -96,5 +96,57 @@ namespace ELjournal.Windows
             Update();
         }
 
+
+
+        //public void LoadList(List<Journal> journals)
+        //{
+        //    lbJournalSt.Items.Clear();
+        //    foreach (var item in journals)
+        //    {
+        //        lbJournalSt.Items.Add(item);
+        //    }
+        //}
+        //private void ResetSearch(object sende, RoutedEventArgs e)
+        //{
+        //    Subj1.Text = "";
+           
+            
+        //    var et = context.Journal.Where(i => i.idStudent == userStud.idStud).ToList();
+        //    lbJournalSt.ItemsSource = et;
+        //    //List<Journal> journals = et;
+        //   // LoadList(journals);
+
+        //}
+        //private void Search(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+               
+               
+
+        //        List<Journal> journals = context.Journal.Where(i => i.idStudent == userStud.idStud).ToList();
+
+        //        if (Subj1.Text != "")
+        //        {
+        //            int students = context.Students.Where(i => i.lName == Subj1.Text).Select(w => w.idStud).FirstOrDefault();
+        //            journals = journals.FindAll(i => i.idStudent == students);
+        //        }
+
+               
+        //        if (journals.Count == 0)
+        //        {
+        //            MessageBox.Show("Не найдено!", "Внимание!",
+        //               MessageBoxButton.OK, MessageBoxImage.Warning);
+        //        }
+        //        LoadList(journals);
+
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Извините, но оно пока что не работает", "УПС", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+
+        //}
+
     }
 }

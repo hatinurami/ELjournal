@@ -10,11 +10,10 @@
         Loaded="Window_Loaded"
         Title="StudentWin" 
         Height="450"
-        Width="790">
+        Width="690">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="86*"/>
-            <ColumnDefinition Width="305*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="84*"/>
@@ -26,14 +25,13 @@
                FontSize="25"
                VerticalAlignment="Center"
                Style="{StaticResource tbStyle}"
-               Margin="0,28,10,28"
-               TextWrapping="Wrap" Grid.Column="1" Height="28"/>
+               Margin="25"
+               TextWrapping="Wrap" Height="28"/>
 
         <ListView
             x:Name="lbJournalSt"
             Visibility="Visible"
-            Grid.Row="1"          
-            Grid.Column="1"
+            Grid.Row="1"
             Background="AliceBlue"
             Margin="15"
             FontSize="14"
@@ -62,8 +60,7 @@
 
 
         <WrapPanel
-            Grid.Row="2"
-            Grid.Column="1">
+            Grid.Row="2" Margin="10">
             <Button
                 x:Name="btn_Back"
                 Content="Назад"
@@ -96,7 +93,7 @@
             </ComboBox>
 
         </WrapPanel>
-        <GroupBox x:Name="GR_BOX"
+        <!--GroupBox x:Name="GR_BOX"
                   Grid.Row="1" Margin="0,78,0,106">
             <GroupBox.Header>
                 <StackPanel Orientation="Horizontal">
@@ -128,11 +125,11 @@
                     </StackPanel>
                 </Grid>
             </StackPanel>
-        </GroupBox>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Height="30" Margin="10,0,22,0" Width="140" >
+        </-->
+        <!--StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Height="30" Margin="10,0,22,0" Width="140" >
             <Button Content="Поиск" Width="60" Margin="5" Click="Search"/>
             <Button Content="Сброс" Width="60" Margin="5" Click="ResetSearch"/>
-        </StackPanel>
+        </-->
 
     </Grid>
 </Window>

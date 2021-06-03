@@ -67,24 +67,31 @@ namespace ELjournal.Windows
 
             try
             {
-                if (edGroup.SelectedIndex != -1)
+                if (Valid.Validation.ValidateName(edName.Text) == true && Valid.Validation.ValidateName(edLName.Text) == true && Valid.Validation.ValidateName(edPatr.Text))
                 {
-                    editStud.idGroup = edGroup.SelectedIndex;
+                    if (edGroup.SelectedIndex != -1)
+                    {
+                        editStud.idGroup = edGroup.SelectedIndex;
+                    }
+
+                    var aut = context.Autoriz.Where(i => i.idAutoriz == editStud.login).FirstOrDefault();
+                    editStud.fName = edName.Text;
+                    editStud.lName = edLName.Text;
+                    editStud.patronymic = edPatr.Text;
+                    editStud.eMail = edEmail.Text;
+                    aut.login = edLog.Text;
+                    aut.password = edPass.Text;
+                    context.SaveChanges();
+
+                    var mes = MessageBox.Show("Данные обновлены", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (mes == MessageBoxResult.OK)
+                    {
+                        Exit_Click(sender, e);
+                    }
                 }
-
-                var aut = context.Autoriz.Where(i => i.idAutoriz == editStud.login).FirstOrDefault();
-                editStud.fName = edName.Text;
-                editStud.lName = edLName.Text;
-                editStud.patronymic = edPatr.Text;
-                editStud.eMail = edEmail.Text;
-                aut.login = edLog.Text;
-                aut.password = edPass.Text;
-                context.SaveChanges();
-
-                var mes = MessageBox.Show("Данные обновлены", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
-                if (mes == MessageBoxResult.OK)
+                else
                 {
-                    Exit_Click(sender, e);
+                    MessageBox.Show("Введите корректные данные!");
                 }
             }
             catch (Exception mes)

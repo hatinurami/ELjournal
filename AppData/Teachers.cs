@@ -32,8 +32,8 @@ namespace ELjournal.AppData
     
         public virtual Autoriz Autoriz { get; set; }
         public virtual Gender Gender1 { get; set; }
-        public virtual Subjects Subjects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Journal> Journal { get; set; }
+        public virtual Subjects Subjects { get; set; }
     }
 }
