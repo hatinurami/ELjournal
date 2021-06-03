@@ -168,3 +168,5 @@ C:\Users\Hati nurami\Source\Repos\ELjournal\obj\Debug\ELjournal.pdb
 D:\ELjournal\obj\Debug\ELjournal.csproj.AssemblyReference.cache
 F:\ELjournal\obj\Debug\Windows\MarkWin.g.cs
 F:\ELjournal\obj\Debug\Windows\MarkWin.baml
+D:\ELjournal\obj\Debug\Windows\MarkWin.g.cs
+D:\ELjournal\obj\Debug\Windows\MarkWin.baml

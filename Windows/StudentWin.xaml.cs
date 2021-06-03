@@ -96,5 +96,61 @@ namespace ELjournal.Windows
             Update();
         }
 
+
+
+        public void LoadList(List<Journal> journals)
+        {
+            lbJournalSt.Items.Clear();
+            foreach (var item in journals)
+            {
+                lbJournalSt.Items.Add(item);
+            }
+        }
+        private void ResetSearch(object sende, RoutedEventArgs e)
+        {
+            Subj1.Text = "";
+           
+            
+            var et = context.Journal.Where(i => i.idStudent == userStud.idStud).ToList();
+
+            List<Journal> journals = et;
+            LoadList(journals);
+
+        }
+        private void Search(object sender, RoutedEventArgs e)
+        {
+        //    try
+        //    {
+        //        var sub = context.Subjects.Where(i => i.idSubj == userTeach.idSubj).FirstOrDefault();
+        //        var et = context.Group.Where(t => t.nameGroup == cbGroup.SelectedItem).Select(r => r.idGroup).FirstOrDefault();
+
+        //        List<Journal> journals = context.Journal.Where(i => i.idSubj == sub.idSubj && i.idGroup == et).ToList();
+
+        //        if (FamSearch1.Text != "")
+        //        {
+        //            int students = context.Students.Where(i => i.lName == FamSearch1.Text).Select(w => w.idStud).FirstOrDefault();
+        //            journals = journals.FindAll(i => i.idStudent == students);
+        //        }
+
+        //        if (ImySearch1.Text != "")
+        //        {
+        //            int students = context.Students.Where(i => i.fName == ImySearch1.Text).Select(w => w.idStud).FirstOrDefault();
+        //            journals = journals.FindAll(i => i.idStudent == students);
+        //        }
+        //        if (journals.Count == 0)
+        //        {
+        //            MessageBox.Show("Не найдено!", "Внимание!",
+        //               MessageBoxButton.OK, MessageBoxImage.Warning);
+        //        }
+        //        LoadList(journals);
+
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Извините, но оно пока что не работает", "УПС", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+
+        }
+
     }
 }
